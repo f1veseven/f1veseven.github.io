@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>开放漏洞情报&amp;开源情报信息收集（OSINT）</title>
+      <link href="/2022/03/25/kai-yuan-lou-dong-qing-bao/"/>
+      <url>/2022/03/25/kai-yuan-lou-dong-qing-bao/</url>
+      
+        <content type="html"><![CDATA[<p>开一个新坑，将市面上现在流传的 redteam 系列书籍进行一个学习记录，文章内容主要摘自某红队系列丛书。</p><p>本章节内容主要是介绍常见的漏洞信息收集和常见的情报信息收集。</p><h2 id="开发漏洞情报"><a href="#开发漏洞情报" class="headerlink" title="开发漏洞情报"></a>开发漏洞情报</h2><h3 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h3><ul><li>CVE <a href="https://cve.mitre.org/[](https://cve.mitre.org/)">https://cve.mitre.org/[](https://cve.mitre.org/)</a></li><li>Exploit-DB <a href="https://www.exploit-db.com/[](https://www.exploit-db.com/)">https://www.exploit-db.com/[](https://www.exploit-db.com/)</a></li><li>CX Security <a href="https://cxsecurity.com/[](https://cxsecurity.com/)">https://cxsecurity.com/[](https://cxsecurity.com/)</a></li><li>CNVD <a href="https://www.cnvd.org.cn/[](https://www.cnvd.org.cn/)">https://www.cnvd.org.cn/[](https://www.cnvd.org.cn/)</a></li><li>securitytracker （网站现已关闭）</li></ul><h3 id="Search-Exploit-DB"><a href="#Search-Exploit-DB" class="headerlink" title="Search Exploit-DB"></a>Search Exploit-DB</h3><p><img src="https://img1.imgtp.com/2022/03/25/dJp5wuQ4.png"></p><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>搜索Windows提权漏洞</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">searchsploit -t windows <span class="token builtin class-name">local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://img1.imgtp.com/2022/03/25/Sd0TTUUZ.png"></p><p>搜索Apache漏洞</p><p><img src="https://img1.imgtp.com/2022/03/25/Gu6eUnjF.png"></p><h2 id="开源情报信息搜集（OSINT）"><a href="#开源情报信息搜集（OSINT）" class="headerlink" title="开源情报信息搜集（OSINT）"></a>开源情报信息搜集（OSINT）</h2><h3 id="搜索引擎语法"><a href="#搜索引擎语法" class="headerlink" title="搜索引擎语法"></a>搜索引擎语法</h3><ul><li>百度 <a href="www.baidu.com">www.baidu.com</a></li><li>谷歌 <a href="www.google.com">www.google.com</a></li><li>必应 <a href="www.bing.com">www.bing.com</a></li></ul><h3 id="在线接口"><a href="#在线接口" class="headerlink" title="在线接口"></a>在线接口</h3><table><thead><tr><th>url</th><th>简介</th></tr></thead><tbody><tr><td><a href="https://www.webscan.cc/">https://www.webscan.cc/</a></td><td>主要解析域名ip，同时提供该同服ip站点列表，但多数解析为cdn</td></tr><tr><td><a href="https://search.censys.io/">https://search.censys.io/</a></td><td>根据ip查询开启的服务信息，查看子域关系图。也可以根据body信息查询含有关键字的主机</td></tr><tr><td><a href="https://crt.sh/">https://crt.sh/</a></td><td>可以查询域的OU信息和证书信息</td></tr><tr><td><a href="https://dnsdumpster.com/">https://dnsdumpster.com/</a></td><td>加载较慢，可以查询解析的ip和开启的服务以及服务器的地域</td></tr><tr><td><a href="https://www.threatcrowd.org/">https://www.threatcrowd.org/</a></td><td>关系图、whois信息、dns历史解析、开启的服务、子域以及对应的IP</td></tr><tr><td><a href="https://dnslytics.com/">https://dnslytics.com</a></td><td>根据域名可以查询顶级域不同的域名，可查询路由信息和信息提供者。根据ip查询可以较全的whois信息和开启的服务</td></tr><tr><td><a href="https://pentest-tools.com/information-gathering/find-subdomains-of-domain">https://pentest-tools.com/information-gathering/find-subdomains-of-domain</a></td><td>可以扫描子域名，但是每天只有一次免费的机会，该网站的在线工具都是付费使用</td></tr><tr><td><a href="https://viewdns.info/">https://viewdns.info</a></td><td>有挺多功能，反查ip、whois查询、ip历史、端口扫描等，但是加载慢</td></tr><tr><td><a href="http://www.yunsee.cn/finger.html">http://www.yunsee.cn/finger.html</a></td><td>需要注册、邀请码</td></tr><tr><td><a href="https://www.aizhan.com/">https://www.aizhan.com/</a></td><td>可以查询访问量、子域等</td></tr><tr><td><a href="https://phpinfo.me/domain">https://phpinfo.me/domain</a></td><td>爆破子域名</td></tr></tbody></table><h3 id="相关整合工具"><a href="#相关整合工具" class="headerlink" title="相关整合工具"></a>相关整合工具</h3><p><a href="https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md">https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md</a></p><p>在线恶意软件分析整合</p><h3 id="DNS历史解析记录"><a href="#DNS历史解析记录" class="headerlink" title="DNS历史解析记录"></a>DNS历史解析记录</h3><p><a href="https://www.dnsdb.io/zh-cn/">https://www.dnsdb.io/zh-cn/</a></p><p><a href="https://viewdns.info/">https://viewdns.info/</a></p><h3 id="信息收集在线工具合集"><a href="#信息收集在线工具合集" class="headerlink" title="信息收集在线工具合集"></a>信息收集在线工具合集</h3><p><a href="https://lovebear.top/info/cn/index.html">https://lovebear.top/info/cn/index.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> redteam </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redteam </tag>
+            
+            <tag> 信息收集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关联信息生成</title>
       <link href="/2022/03/25/guan-lian-xin-xi-sheng-cheng/"/>
       <url>/2022/03/25/guan-lian-xin-xi-sheng-cheng/</url>

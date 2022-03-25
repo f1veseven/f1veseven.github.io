@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="主机发现, F1veseven Blog">
+    <meta name="keywords" content="开放漏洞情报&amp;开源情报信息收集（OSINT）, F1veseven Blog">
     <meta name="description" content="开一个新坑，将市面上现在流传的 redteam 系列书籍进行一个学习记录，文章内容主要摘自某红队系列丛书。
-本章节内容主要是介绍常见的主机扫描和服务扫描工具。
-Nmap官网https://nmap.org/
-安装Mac os：brew in">
+本章节内容主要是介绍常见的漏洞信息收集和常见的情报信息收集。
+开发漏洞情报常用网站
+CVE https://cve.mitre.or">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@ Nmap官网https://nmap.org/
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>主机发现 | F1veseven Blog</title>
+    <title>开放漏洞情报&amp;开源情报信息收集（OSINT） | F1veseven Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -260,12 +260,12 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img1.imgtp.com/2022/03/25/sXpPbR04.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img1.imgtp.com/2022/03/25/2JClgBo5.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">主机发现</h1>
+                    <h1 class="description center-align post-title">开放漏洞情报&amp;开源情报信息收集（OSINT）</h1>
                 </div>
             </div>
         </div>
@@ -389,10 +389,6 @@ var _hmt = _hmt || [];
                                 <span class="chip bg-color">信息收集</span>
                             </a>
                         
-                            <a href="/tags/tools/">
-                                <span class="chip bg-color">tools</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -414,7 +410,7 @@ var _hmt = _hmt || [];
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-24
+                    2022-03-25
                 </div>
                 
 
@@ -423,14 +419,14 @@ var _hmt = _hmt || [];
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    573
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    2 分
                 </div>
                 
 
@@ -454,181 +450,83 @@ var _hmt = _hmt || [];
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>开一个新坑，将市面上现在流传的 redteam 系列书籍进行一个学习记录，文章内容主要摘自某红队系列丛书。</p>
-<p>本章节内容主要是介绍常见的主机扫描和服务扫描工具。</p>
-<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><p><a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org/</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Mac os：brew <span class="token function">install</span> nmap
-Centos：yum <span class="token function">install</span> nmap
-Ubuntu：apt <span class="token function">install</span> nmap<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="参考手册"><a href="#参考手册" class="headerlink" title="参考手册"></a>参考手册</h3><p><a target="_blank" rel="noopener" href="https://nmap.org/man/zh/index.html">https://nmap.org/man/zh/index.html</a></p>
-<h3 id="扫描方式"><a href="#扫描方式" class="headerlink" title="扫描方式"></a>扫描方式</h3><ul>
-<li>TCP：-sT</li>
-<li>SYN：-sS</li>
-<li>ACK：-sA</li>
-<li>UDP：-sU</li>
-<li>RPC：-sR</li>
-<li>ICMP：-sP</li>
-<li>Disable Port Scan：-sn</li>
+<p>本章节内容主要是介绍常见的漏洞信息收集和常见的情报信息收集。</p>
+<h2 id="开发漏洞情报"><a href="#开发漏洞情报" class="headerlink" title="开发漏洞情报"></a>开发漏洞情报</h2><h3 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h3><ul>
+<li>CVE <a target="_blank" rel="noopener" href="https://cve.mitre.org/[](https://cve.mitre.org/)">https://cve.mitre.org/[](https://cve.mitre.org/)</a></li>
+<li>Exploit-DB <a target="_blank" rel="noopener" href="https://www.exploit-db.com/[](https://www.exploit-db.com/)">https://www.exploit-db.com/[](https://www.exploit-db.com/)</a></li>
+<li>CX Security <a target="_blank" rel="noopener" href="https://cxsecurity.com/[](https://cxsecurity.com/)">https://cxsecurity.com/[](https://cxsecurity.com/)</a></li>
+<li>CNVD <a target="_blank" rel="noopener" href="https://www.cnvd.org.cn/[](https://www.cnvd.org.cn/)">https://www.cnvd.org.cn/[](https://www.cnvd.org.cn/)</a></li>
+<li>securitytracker （网站现已关闭）</li>
 </ul>
-<h3 id="常用的扫描方法"><a href="#常用的扫描方法" class="headerlink" title="常用的扫描方法"></a>常用的扫描方法</h3><ul>
-<li>扫描10000端口、操作系统、版本</li>
+<h3 id="Search-Exploit-DB"><a href="#Search-Exploit-DB" class="headerlink" title="Search Exploit-DB"></a>Search Exploit-DB</h3><p><img src="https://img1.imgtp.com/2022/03/25/dJp5wuQ4.png"></p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>搜索Windows提权漏洞</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">searchsploit -t windows <span class="token builtin class-name">local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://img1.imgtp.com/2022/03/25/Sd0TTUUZ.png"></p>
+<p>搜索Apache漏洞</p>
+<p><img src="https://img1.imgtp.com/2022/03/25/Gu6eUnjF.png"></p>
+<h2 id="开源情报信息搜集（OSINT）"><a href="#开源情报信息搜集（OSINT）" class="headerlink" title="开源情报信息搜集（OSINT）"></a>开源情报信息搜集（OSINT）</h2><h3 id="搜索引擎语法"><a href="#搜索引擎语法" class="headerlink" title="搜索引擎语法"></a>搜索引擎语法</h3><ul>
+<li>百度 <a href="www.baidu.com">www.baidu.com</a></li>
+<li>谷歌 <a href="www.google.com">www.google.com</a></li>
+<li>必应 <a href="www.bing.com">www.bing.com</a></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -T4 -A <span class="token operator">&lt;</span>target<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li>版本探测</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -sV <span class="token operator">&lt;</span>target<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
-<li>操作系统探测</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -O <span class="token operator">&lt;</span>target<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h3><ul>
-<li>–host-timeout 主机超时 通常选值：18000</li>
-<li>–scan-delay 报文时间间隔 通常选值：1000</li>
-<li>-S &lt;源地址&gt; 定义扫描源地址，为了不被发现</li>
-</ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>nmap -v -iR 100000 -P0 -p 80</p>
-<p><code>随机选择100000台主机扫描是否运行Web服务器（80端口）。由起始阶段发送探测报文来确定主机是否工作非常浪费时间，而且只需探测主机的一个端口，因此使用 -P0 禁止对主机列表。（-P0 就是 -Pn）</code></p>
-<p>host company.com | cut -d ‘ ‘ -f 4 | nmap -v -iL -（host -l company.com | cut -d ‘ ‘ -f 4 | nmap -v -iL -）</p>
-<p><code>进行DNS区域传输，已发现company.com中的主机，然后将IP地址提供给nmap</code></p>
-<blockquote>
-<p>host -l &lt;domain&gt; 需要有域系统的<strong>管理员权限</strong>，才可以列出所有子域名，一般情况下无法使用<br>cut -d ‘ ‘ -f 4 将输出终端的字符进行分割，-d 指定分割字符，指定分割位置<br>nmap -v -iL - 解析出来 ip 传给 nmap 扫描，-v 显示详细信息，-iL 指定传入的文件名</p>
-</blockquote>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><ul>
-<li><p>-oN <File></p>
-</li>
-<li><p>-oX <XML File></p>
-</li>
-<li><p>-oG <filespec></p>
-<p>Grep输出 参考：<a target="_blank" rel="noopener" href="http://www.unspecific.com/nmap-oG-output">http://www.unspecific.com/nmap-oG-output</a></p>
-</li>
-</ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> nmap -O -oG - www.baidu.com  
-
-Nmap <span class="token number">7.92</span> scan initiated Thu Mar <span class="token number">24</span> 06:16:08 <span class="token number">2022</span> as: nmap -O -oG - www.baidu.com
-
-Host: <span class="token number">110.242</span>.68.3 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.3 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Ports: <span class="token number">80</span>/open/tcp//http///, <span class="token number">443</span>/open/tcp//https///     Ignored State: filtered <span class="token punctuation">(</span><span class="token number">998</span><span class="token punctuation">)</span>Seq Index: <span class="token number">256</span>   IP ID Seq: Randomized
-
-Nmap <span class="token keyword">done</span> at Thu Mar <span class="token number">24</span> 06:16:21 <span class="token number">2022</span> -- <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">12.63</span> seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> nmap www.baidu.com -oG - <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'/open/&#123;print $2&#125;'</span>
-<span class="token number">110.242</span>.68.3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>awk ‘/open/{print $2}’ 正则匹配含 open 的行，以空格为分割取第二列</p>
-</blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> nmap <span class="token number">110.242</span>.68.4/29 -oG - -sP
-
-Nmap <span class="token number">7.92</span> scan initiated Thu Mar <span class="token number">24</span> 06:28:33 <span class="token number">2022</span> as: nmap -oG - -sP <span class="token number">110.242</span>.68.4/29
-
-Host: <span class="token number">110.242</span>.68.1 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.2 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.3 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.4 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.5 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.6 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-Host: <span class="token number">110.242</span>.68.7 <span class="token punctuation">(</span><span class="token punctuation">)</span>   Status: Up
-
-Nmap <span class="token keyword">done</span> at Thu Mar <span class="token number">24</span> 06:28:47 <span class="token number">2022</span> -- <span class="token number">8</span> IP addresses <span class="token punctuation">(</span><span class="token number">7</span> hosts up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">14.25</span> seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="masscan"><a href="#masscan" class="headerlink" title="masscan"></a>masscan</h2><h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/robertdavidgraham/masscan">https://github.com/robertdavidgraham/masscan</a></p>
-<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> --assume-yes <span class="token function">install</span> <span class="token function">git</span> <span class="token function">make</span> gcc
-<span class="token function">git</span> clone https://github.com/robertdavidgraham/masscan
-<span class="token builtin class-name">cd</span> masscan
-<span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>该工具兼容Nmap的参数</p>
-</blockquote>
-<p>现在可以直接apt安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">apt</span> <span class="token function">install</span> masscan<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="高级选项"><a href="#高级选项" class="headerlink" title="高级选项"></a>高级选项</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> masscan <span class="token number">121.37</span>.71.222 --port <span class="token number">3389</span> --adapter-ip <span class="token number">192.168</span>.186.26<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://img1.imgtp.com/2022/03/24/RmpdiIk8.png"></p>
-<ul>
-<li>–adapter-ip 指定发包的IP地址</li>
-<li>–adapter-port 指定发包的源端口</li>
-<li>–adapter-mac 指定发包的源MAC地址</li>
-<li>–router-mac 指定网关的MAC地址</li>
-<li>–exclude IP地址范围黑名单，防止masscan扫描</li>
-<li>–includefile，-iL 读取一个范围列表进行扫描</li>
-<li>–wait 指定网发送包后的等待时间，默认为10秒</li>
-</ul>
-<h2 id="nbtscan"><a href="#nbtscan" class="headerlink" title="nbtscan"></a>nbtscan</h2><p>kali中已经安装：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─$ <span class="token function">whereis</span> nbtscan
-nbtscan: /usr/bin/nbtscan /usr/share/man/man1/nbtscan.1.gz
-                                                                                                              
-┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─$ nbtscan
-
-NBTscan version <span class="token number">1.7</span>.1.
-This is a <span class="token function">free</span> software and it comes with absolutely no warranty.
-You can use, distribute and modify it under terms of GNU GPL <span class="token number">2</span>+.
-
-Usage:
-nbtscan <span class="token punctuation">[</span>-v<span class="token punctuation">]</span> <span class="token punctuation">[</span>-d<span class="token punctuation">]</span> <span class="token punctuation">[</span>-e<span class="token punctuation">]</span> <span class="token punctuation">[</span>-l<span class="token punctuation">]</span> <span class="token punctuation">[</span>-t timeout<span class="token punctuation">]</span> <span class="token punctuation">[</span>-b bandwidth<span class="token punctuation">]</span> <span class="token punctuation">[</span>-r<span class="token punctuation">]</span> <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s separator<span class="token punctuation">]</span> <span class="token punctuation">[</span>-m retransmits<span class="token punctuation">]</span> <span class="token punctuation">(</span>-f filename<span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>scan_range<span class="token operator">></span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="nbtscan示例"><a href="#nbtscan示例" class="headerlink" title="nbtscan示例"></a>nbtscan示例</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nbtscan -r <span class="token number">192.168</span>.0.1/24
-扫描整个C段
-
-nbtscan <span class="token number">192.168</span>.0.1-100
-扫描一个范围
-
-nbtscan -v -s <span class="token builtin class-name">:</span> <span class="token number">192.168</span>.0.0/24
-以 <span class="token builtin class-name">:</span> 分割显示结果
-
-nbtscan -f <span class="token operator">&lt;</span>File<span class="token operator">></span>
-从文件读取扫描范围<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─$ nbtscan -v -s <span class="token string">' '</span> <span class="token number">192.168</span>.0.112 
-<span class="token number">192.168</span>.0.112 DESKTOP-R5A39I1 00U
-<span class="token number">192.168</span>.0.112 DESKTOP-R5A39I1 20U
-<span class="token number">192.168</span>.0.112 WORKGROUP       00G
-<span class="token number">192.168</span>.0.112 MAC <span class="token number">18</span>:26:49:4c:f8:4c
-                                                                                                              
-┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─$ nbtscan -v -s <span class="token string">' '</span> <span class="token number">192.168</span>.0.112 <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span> <span class="token operator">|</span> <span class="token function">uniq</span>
-<span class="token number">192.168</span>.0.112<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>awk ‘{print $1}’取第一列</p>
-<p>uniq 筛选出重复字符串</p>
-</blockquote>
-<h2 id="hping3"><a href="#hping3" class="headerlink" title="hping3"></a>hping3</h2><p>hping3主要是测试防火墙的拦截规则，对网络设备进行测试</p>
-<p><img src="https://img1.imgtp.com/2022/03/24/pC7lL5tA.png"></p>
-<h3 id="常用模式"><a href="#常用模式" class="headerlink" title="常用模式"></a>常用模式</h3><ul>
-<li>-0 –rawip IP原始报文</li>
-<li>-1 –icmp ICMP模式</li>
-<li>-2 –udp UDP模式</li>
-<li>-8 –scan 扫描模式</li>
-<li>-9 –listen 监听模式</li>
-</ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hping3 --scan <span class="token number">1</span>-30,70-90 -S www.baidu.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<blockquote>
-<p>SYN方式扫描主机端口</p>
-</blockquote>
-<p><img src="https://img1.imgtp.com/2022/03/24/vC16eD9o.png"></p>
-<p>可以看到，目标主机回复：S..A，代表SYN/ACK</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hping3 -S -a <span class="token number">114.114</span>.114.114 -p <span class="token number">53</span> <span class="token number">114.114</span>.114.114 -c <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<blockquote>
-<p>测试防火墙对ICMP包的反应，是否支持traceroute，是否开放某个端口，对防火墙进行拒绝服务攻击（Dos attack）。例如，以Land Attack方式测试目标防火墙（Land Attack是将发送源地址设置为与目标地址相同，诱使目标机与自己不停地建立链接）。</p>
-</blockquote>
-<h3 id="DRDDOS"><a href="#DRDDOS" class="headerlink" title="DRDDOS"></a>DRDDOS</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> hping3 --udp -a <span class="token number">114.114</span>.114.114 -p <span class="token number">53</span> <span class="token number">114.114</span>.114.114 -c <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<blockquote>
-<p>基于UDP的DOS</p>
-</blockquote>
+<h3 id="在线接口"><a href="#在线接口" class="headerlink" title="在线接口"></a>在线接口</h3><table>
+<thead>
+<tr>
+<th>url</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.webscan.cc/">https://www.webscan.cc/</a></td>
+<td>主要解析域名ip，同时提供该同服ip站点列表，但多数解析为cdn</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://search.censys.io/">https://search.censys.io/</a></td>
+<td>根据ip查询开启的服务信息，查看子域关系图。也可以根据body信息查询含有关键字的主机</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh/</a></td>
+<td>可以查询域的OU信息和证书信息</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a></td>
+<td>加载较慢，可以查询解析的ip和开启的服务以及服务器的地域</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.threatcrowd.org/">https://www.threatcrowd.org/</a></td>
+<td>关系图、whois信息、dns历史解析、开启的服务、子域以及对应的IP</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://dnslytics.com/">https://dnslytics.com</a></td>
+<td>根据域名可以查询顶级域不同的域名，可查询路由信息和信息提供者。根据ip查询可以较全的whois信息和开启的服务</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pentest-tools.com/information-gathering/find-subdomains-of-domain">https://pentest-tools.com/information-gathering/find-subdomains-of-domain</a></td>
+<td>可以扫描子域名，但是每天只有一次免费的机会，该网站的在线工具都是付费使用</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://viewdns.info/">https://viewdns.info</a></td>
+<td>有挺多功能，反查ip、whois查询、ip历史、端口扫描等，但是加载慢</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.yunsee.cn/finger.html">http://www.yunsee.cn/finger.html</a></td>
+<td>需要注册、邀请码</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.aizhan.com/">https://www.aizhan.com/</a></td>
+<td>可以查询访问量、子域等</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://phpinfo.me/domain">https://phpinfo.me/domain</a></td>
+<td>爆破子域名</td>
+</tr>
+</tbody></table>
+<h3 id="相关整合工具"><a href="#相关整合工具" class="headerlink" title="相关整合工具"></a>相关整合工具</h3><p><a target="_blank" rel="noopener" href="https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md">https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md</a></p>
+<p>在线恶意软件分析整合</p>
+<h3 id="DNS历史解析记录"><a href="#DNS历史解析记录" class="headerlink" title="DNS历史解析记录"></a>DNS历史解析记录</h3><p><a target="_blank" rel="noopener" href="https://www.dnsdb.io/zh-cn/">https://www.dnsdb.io/zh-cn/</a></p>
+<p><a target="_blank" rel="noopener" href="https://viewdns.info/">https://viewdns.info/</a></p>
+<h3 id="信息收集在线工具合集"><a href="#信息收集在线工具合集" class="headerlink" title="信息收集在线工具合集"></a>信息收集在线工具合集</h3><p><a target="_blank" rel="noopener" href="https://lovebear.top/info/cn/index.html">https://lovebear.top/info/cn/index.html</a></p>
 
                 
             </div>
@@ -655,7 +553,7 @@ nbtscan -f <span class="token operator">&lt;</span>File<span class="token operat
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://f1veseven.github.io/2022/03/24/zhu-ji-fa-xian/">http://f1veseven.github.io/2022/03/24/zhu-ji-fa-xian/</a>
+                    <a href="http://f1veseven.github.io/2022/03/25/kai-yuan-lou-dong-qing-bao/">http://f1veseven.github.io/2022/03/25/kai-yuan-lou-dong-qing-bao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -699,10 +597,6 @@ nbtscan -f <span class="token operator">&lt;</span>File<span class="token operat
                             
                                 <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
                                     <span class="chip bg-color">信息收集</span>
-                                </a>
-                            
-                                <a href="/tags/tools/">
-                                    <span class="chip bg-color">tools</span>
                                 </a>
                             
                         </div>
@@ -1030,68 +924,17 @@ nbtscan -f <span class="token operator">&lt;</span>File<span class="token operat
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2022/03/25/guan-lian-xin-xi-sheng-cheng/">
-                    <div class="card-image">
-                        
-                        <img src="https://img1.imgtp.com/2022/03/25/F7bmropg.png" class="responsive-img" alt="关联信息生成">
-                        
-                        <span class="card-title">关联信息生成</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/redteam/" class="post-category">
-                                    redteam
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/redteam/">
-                        <span class="chip bg-color">redteam</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                        <span class="chip bg-color">信息收集</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2022/03/24/zhu-ji-fa-xian/">
+                <a href="/2022/03/25/kai-yuan-lou-dong-qing-bao/">
                     <div class="card-image">
                         
-                        <img src="https://img1.imgtp.com/2022/03/25/sXpPbR04.jpeg" class="responsive-img" alt="主机发现">
+                        <img src="https://img1.imgtp.com/2022/03/25/2JClgBo5.png" class="responsive-img" alt="开放漏洞情报&amp;开源情报信息收集（OSINT）">
                         
-                        <span class="card-title">主机发现</span>
+                        <span class="card-title">开放漏洞情报&amp;开源情报信息收集（OSINT）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1102,7 +945,7 @@ nbtscan -f <span class="token operator">&lt;</span>File<span class="token operat
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
                             </span>
                         <span class="publish-author">
                             
@@ -1128,8 +971,56 @@ nbtscan -f <span class="token operator">&lt;</span>File<span class="token operat
                         <span class="chip bg-color">信息收集</span>
                     </a>
                     
-                    <a href="/tags/tools/">
-                        <span class="chip bg-color">tools</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/25/guan-lian-xin-xi-sheng-cheng/">
+                    <div class="card-image">
+                        
+                        <img src="https://img1.imgtp.com/2022/03/25/F7bmropg.png" class="responsive-img" alt="关联信息生成">
+                        
+                        <span class="card-title">关联信息生成</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/redteam/" class="post-category">
+                                    redteam
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/redteam/">
+                        <span class="chip bg-color">redteam</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                        <span class="chip bg-color">信息收集</span>
                     </a>
                     
                 </div>
