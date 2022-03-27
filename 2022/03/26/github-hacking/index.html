@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关联信息生成, F1veseven Blog">
-    <meta name="description" content="本章节内容主要是介绍利用已经收集的个人信息来生成字典。
+    <meta name="keywords" content="Github Hacking, F1veseven Blog">
+    <meta name="description" content="本章节内容主要是介绍Github中的搜索语法，查询项目公开的源码。
 文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。
-关联信息生成在渗透前期工作开展之前，需要对目标的各种信息进行分析、拆分、组合。
-例如：赫">
+Github Hacking您可以在所有公共GitHub存储库中搜索以下类型">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关联信息生成 | F1veseven Blog</title>
+    <title>Github Hacking | F1veseven Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -260,12 +259,12 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img1.imgtp.com/2022/03/25/F7bmropg.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/03/28/c3d6fTwa.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关联信息生成</h1>
+                    <h1 class="description center-align post-title">Github Hacking</h1>
                 </div>
             </div>
         </div>
@@ -410,7 +409,7 @@ var _hmt = _hmt || [];
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-25
+                    2022-03-26
                 </div>
                 
 
@@ -419,14 +418,14 @@ var _hmt = _hmt || [];
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    523
+                    858
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -449,72 +448,108 @@ var _hmt = _hmt || [];
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本章节内容主要是介绍利用已经收集的个人信息来生成字典。</p>
+                <p>本章节内容主要是介绍Github中的搜索语法，查询项目公开的源码。</p>
 <p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
-<h2 id="关联信息生成"><a href="#关联信息生成" class="headerlink" title="关联信息生成"></a>关联信息生成</h2><p>在渗透前期工作开展之前，需要对目标的各种信息进行分析、拆分、组合。</p>
-<p>例如：赫尔巴斯亚基国</p>
-<p>根据地域习惯、宗教、互联网开发信息等信息进行简要拆分，假设获取的信息如下：</p>
-<ul>
-<li>当地人爱好吃橙子</li>
-<li>当地人信奉伊斯兰教</li>
-<li>IPV4地址开放IP段</li>
-<li>相关社交网络公开的数据库</li>
+<h2 id="Github-Hacking"><a href="#Github-Hacking" class="headerlink" title="Github Hacking"></a>Github Hacking</h2><p>您可以在所有公共GitHub存储库中搜索以下类型的信息，以及您有权访问的所有私有GitHub存储库：</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><ul>
+<li>Repositories</li>
+<li>Topics</li>
+<li>Issues and pull requests</li>
+<li>Code</li>
+<li>Commits</li>
+<li>Users</li>
+<li>Wikis</li>
 </ul>
-<p>根据宗教、习惯、IP地址、开放数据支持……等，为后续的字典生成、鱼叉、水坑攻击铺下基石。</p>
-<h2 id="字典生成"><a href="#字典生成" class="headerlink" title="字典生成"></a>字典生成</h2><h3 id="pydictor"><a href="#pydictor" class="headerlink" title="pydictor"></a>pydictor</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone https:&#x2F;&#x2F;github.com&#x2F;LandGrey&#x2F;pydictor.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>参考：</p>
+<ul>
+<li>Searching for repositories</li>
+<li>Searching topics</li>
+<li>Searching code</li>
+<li>Searching commits</li>
+<li>Searching issues and pull requests</li>
+<li>Searching users</li>
+<li>Searching wikis</li>
+<li>Searching in forks</li>
+</ul>
+<p>您可以使用 <em>搜索</em> 页面或 <em>高级搜索</em> 页面搜索GitHub。</p>
+<p>您可以使用 &gt; , &gt;= , &lt; , 和 &lt;= 搜索是大于，大于或等于，小于和小于或等于另一个值的值。</p>
+<h3 id="搜索仓库"><a href="#搜索仓库" class="headerlink" title="搜索仓库"></a>搜索仓库</h3><table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;_n_</td>
+<td>cats stars:&gt;1000 匹配关键字”cats”且star大于1000的仓库</td>
+</tr>
+<tr>
+<td>&gt;=_n_</td>
+<td>cats topics:&gt;=5 匹配关键字”cats”且标签数量大于等于5的仓库</td>
+</tr>
+<tr>
+<td>&lt;_n_</td>
+<td>cats size:&lt;10000 匹配关键字”cats”且文件小于10KB的仓库</td>
+</tr>
+<tr>
+<td>&lt;=_n_</td>
+<td>cats stars:&lt;=50 匹配关键字”cats”且star小于等于50的仓库</td>
+</tr>
+<tr>
+<td>_n_..*</td>
+<td>cats stars:10..* 匹配关键字”cats”且star大于10的仓库</td>
+</tr>
+<tr>
+<td>*.._n_</td>
+<td>cats stars:*..10 匹配关键字”cats”且star小于等于10的仓库</td>
+</tr>
+<tr>
+<td>n..n</td>
+<td>cats stars:10..50 匹配关键字”cats”且star大于10且小于50的仓库</td>
+</tr>
+<tr>
+<td>_n_..*</td>
+<td>cats stars:10..* 匹配关键字”cats”且star大于等于10的仓库</td>
+</tr>
+<tr>
+<td>*.._n_</td>
+<td>cats stars:*..10 匹配关键字”cats”且star小于等于10的仓库</td>
+</tr>
+<tr>
+<td>n..n</td>
+<td>cats stars:10..50 匹配关键字”cats”且star大于10且小于50的仓库</td>
+</tr>
+</tbody></table>
+<h3 id="搜索代码"><a href="#搜索代码" class="headerlink" title="搜索代码"></a>搜索代码</h3><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>只能搜索小于384 KB的文件</li>
+<li>只能搜索小于500,000个文件的存储库</li>
+<li>登录的用户可以搜索所有公共存储库</li>
+<li>除 filename 搜索外，搜索源代码时必须至少包含一个搜索词。例如，搜索 language:javascript 无效，而是这样： amazing language:javascript。</li>
+<li>搜索结果最多可以显示来自同一个文件的两个片段，但文件中可能会有更多结果。</li>
+<li>您不能将以下通配符用作搜索查询的一部分：. , : ; / \ ‘ “ = * ! ? # $ &amp; + ^ | ~ &lt; &gt; ( ) { } [ ]。搜索将忽略这些符号。</li>
+</ul>
+<h4 id="日期条件"><a href="#日期条件" class="headerlink" title="日期条件"></a>日期条件</h4><p>cats pushed:&lt;2012-07-05 搜索在2012年07月05日前push代码，且cats作为关键字</p>
+<p>cats pushed:2016-04-30..2016-07-04 日期区间</p>
+<p>cats created:&gt;=2017-04-01 创建时间</p>
+<h4 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h4><p>AND、OR、NOT</p>
+<h4 id="排除运算"><a href="#排除运算" class="headerlink" title="排除运算"></a>排除运算</h4><p>cats pushed:&lt;2012-07-05 -language:java 搜索在2012年07月05日前push代码，且cats作为关键字，排除 java 语言仓库。</p>
+<h4 id="包含搜索"><a href="#包含搜索" class="headerlink" title="包含搜索"></a>包含搜索</h4><p>cats in:file 搜索文件中包含cats的代码</p>
+<p>cats in:path 搜索路径中包含cats的代码</p>
+<p>cats in:path,file 搜索路劲、文件中包含cats的代码</p>
+<p>console path:app/public language:javascript 搜索关键字console，且语言为javascript，在app/public下的代码</p>
+<h4 id="主题搜索"><a href="#主题搜索" class="headerlink" title="主题搜索"></a>主题搜索</h4><p>user:USERNAME 用户名搜索</p>
+<p>org:ORGNAME 组织搜索</p>
+<p>repo:USERNAME/REPOSITORY 指定仓库搜索</p>
+<h4 id="文件大小"><a href="#文件大小" class="headerlink" title="文件大小"></a>文件大小</h4><p>size:&gt;1000 搜索大小大于1KB的文件</p>
+<h4 id="文件名称"><a href="#文件名称" class="headerlink" title="文件名称"></a>文件名称</h4><p>filename:config.php language:php 搜索文件名为config.php，且语言为php的代码。例如搜索Java项目配置文件：mail filename:.properties</p>
+<p><img src="https://img1.imgtp.com/2022/03/26/Du5ZaVml.png"></p>
+<h4 id="扩展名"><a href="#扩展名" class="headerlink" title="扩展名"></a>扩展名</h4><p>extension:EXTENSION 指定扩展名搜索</p>
+<p>例如：extension:properties jdbc</p>
+<h2 id="自动化工具"><a href="#自动化工具" class="headerlink" title="自动化工具"></a>自动化工具</h2><p><a target="_blank" rel="noopener" href="https://github.com/UnkL4b/GitMiner">https://github.com/UnkL4b/GitMiner</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python3 gitminer-v2.0.py -c cookie.txt  -q &#39;extension:properties jdbc&#39; -r &#39;password(.*)&#39; -m passwords<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="生成字典"><a href="#生成字典" class="headerlink" title="生成字典"></a>生成字典</h4><p><img src="https://img1.imgtp.com/2022/03/25/Xb0E9vMT.png"></p>
-<p>快速使用：<a target="_blank" rel="noopener" href="https://github.com/LandGrey/pydictor/blob/master/docs/doc/usage.md">https://github.com/LandGrey/pydictor/blob/master/docs/doc/usage.md</a></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$python3 pydictor.py --sedb
-                              _ _      _
-              _ __  _   _  __| (_) ___| |_ ___  _ __
-             | &#39;_ \| | | |&#x2F; _&#96; | |&#x2F; __| __&#x2F; _ \| &#39;__|
-             | |_) | |_| | (_| | | (__| || (_) | |
-             | .__&#x2F; \__, |\__,_|_|\___|\__\___&#x2F;|_|
-             |_|    |___&#x2F;                         
-
-                   Social Engineering Dictionary Builder
-                                            Build by LandGrey
-    ----------------------------[ command ]----------------------------
-    [+]help desc             [+]exit&#x2F;quit            [+]clear&#x2F;cls
-    [+]show option           [+]set option arguments [+]rm option
-    [+]len minlen maxlen     [+]head prefix          [+]tail suffix
-    [+]encode type           [+]occur L d s          [+]types L d s
-    [+]regex string          [+]level code           [+]leet code
-    [+]output directory      [+]run
-
-    ----------------------------[ option ]----------------------------
-    [+]cname                 [+]ename                [+]sname
-    [+]birth                 [+]usedpwd              [+]phone
-    [+]uphone                [+]hphone               [+]email
-    [+]postcode              [+]nickname             [+]idcard
-    [+]jobnum                [+]otherdate            [+]usedchar
-
-pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>新版pydictor生成字典时存在问题，需要下载旧版pydictor</p>
-<p>wget <a target="_blank" rel="noopener" href="https://github.com/LandGrey/pydictor/archive/refs/tags/v2.0.5.zip">https://github.com/LandGrey/pydictor/archive/refs/tags/v2.0.5.zip</a></p>
-</blockquote>
-<h4 id="合并去重"><a href="#合并去重" class="headerlink" title="合并去重"></a>合并去重</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python pydictor.py -tool unqbiner &#x2F;my&#x2F;all&#x2F;dict&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<blockquote>
-<p>只需要指定路径</p>
-</blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──(kali㉿kali)-[~&#x2F;tools&#x2F;pydictor-2.0.5]
-└─$ python3 pydictor.py -tool uniqbiner ~&#x2F;tools&#x2F;pydictor-2.0.5&#x2F;results&#x2F;
-                              _ _      _
-              _ __  _   _  __| (_) ___| |_ ___  _ __                                  
-             | &#39;_ \| | | |&#x2F; _&#96; | |&#x2F; __| __&#x2F; _ \| &#39;__|                                 
-             | |_) | |_| | (_| | | (__| || (_) | |                                    
-             | .__&#x2F; \__, |\__,_|_|\___|\__\___&#x2F;|_|                                    
-             |_|    |___&#x2F;                            2.0.5#dev                        
-
-[+] Source of  :7869 lines
-[+] A total of :7869 lines
-[+] Store in   :&#x2F;home&#x2F;kali&#x2F;tools&#x2F;pydictor-2.0.5&#x2F;results&#x2F;uniqbiner_034233.txt 
-[+] Cost       :0.2306 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<p>需要将cookie信息存入文件中</p>
 
                 
             </div>
@@ -541,7 +576,7 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://f1veseven.github.io/2022/03/25/guan-lian-xin-xi-sheng-cheng/">http://f1veseven.github.io/2022/03/25/guan-lian-xin-xi-sheng-cheng/</a>
+                    <a href="http://f1veseven.github.io/2022/03/26/github-hacking/">http://f1veseven.github.io/2022/03/26/github-hacking/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -916,12 +951,12 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/25/kai-yuan-lou-dong-qing-bao/">
+                <a href="/2022/03/26/google-hacking/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/28/vyyRfeGV.jpg" class="responsive-img" alt="开放漏洞情报&amp;开源情报信息收集（OSINT）">
+                        <img src="https://imgtp.apqiang.com/2022/03/28/OwdYJEKL.jpeg" class="responsive-img" alt="Google Hacking">
                         
-                        <span class="card-title">开放漏洞情报&amp;开源情报信息收集（OSINT）</span>
+                        <span class="card-title">Google Hacking</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -932,7 +967,7 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-26
                         </span>
                         <span class="publish-author">
                             
@@ -957,10 +992,6 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
                         <span class="chip bg-color">信息收集</span>
                     </a>
                     
-                    <a href="/tags/tools/">
-                        <span class="chip bg-color">tools</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -972,12 +1003,12 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/24/zhu-ji-fa-xian/">
+                <a href="/2022/03/25/kai-yuan-lou-dong-qing-bao/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/28/ZWILpdi7.jpeg" class="responsive-img" alt="主机发现">
+                        <img src="https://imgtp.apqiang.com/2022/03/28/vyyRfeGV.jpg" class="responsive-img" alt="开放漏洞情报&amp;开源情报信息收集（OSINT）">
                         
-                        <span class="card-title">主机发现</span>
+                        <span class="card-title">开放漏洞情报&amp;开源情报信息收集（OSINT）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -988,7 +1019,7 @@ pydictor SEDB&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
                             </span>
                         <span class="publish-author">
                             
