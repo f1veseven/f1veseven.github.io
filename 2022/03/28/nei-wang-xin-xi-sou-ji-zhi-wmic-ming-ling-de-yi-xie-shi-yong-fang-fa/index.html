@@ -4,12 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="开放漏洞情报&amp;开源情报信息收集（OSINT）, F1veseven Blog">
-    <meta name="description" content="本章节内容主要是介绍常见的漏洞信息收集和常见的情报信息收集。
-文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。
-开发漏洞情报常用网站
-CVE https://cve.mitre.org
-Expl">
+    <meta name="keywords" content="内网信息搜集之wmic命令的一些使用方法, F1veseven Blog">
+    <meta name="description" content="0x00.前言wmic和cmd一样在所有的windows版本中都存在，同时wmic有很多cmd下不方便使用的部分，今天给大家介绍一些在后渗透过程中非常适用的使用wmic进行信息收集的命令
+0x01.关于wmicWMI命令行（WMIC）实用程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +18,7 @@ Expl">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>开放漏洞情报&amp;开源情报信息收集（OSINT） | F1veseven Blog</title>
+    <title>内网信息搜集之wmic命令的一些使用方法 | F1veseven Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -261,12 +258,12 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/03/28/vyyRfeGV.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/03/29/ifPg7hui.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">开放漏洞情报&amp;开源情报信息收集（OSINT）</h1>
+                    <h1 class="description center-align post-title">内网信息搜集之wmic命令的一些使用方法</h1>
                 </div>
             </div>
         </div>
@@ -390,8 +387,8 @@ var _hmt = _hmt || [];
                                 <span class="chip bg-color">信息收集</span>
                             </a>
                         
-                            <a href="/tags/tools/">
-                                <span class="chip bg-color">tools</span>
+                            <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
+                                <span class="chip bg-color">内网渗透</span>
                             </a>
                         
                     </div>
@@ -415,7 +412,7 @@ var _hmt = _hmt || [];
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-25
+                    2022-03-28
                 </div>
                 
 
@@ -424,14 +421,14 @@ var _hmt = _hmt || [];
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    554
+                    786
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -454,84 +451,51 @@ var _hmt = _hmt || [];
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本章节内容主要是介绍常见的漏洞信息收集和常见的情报信息收集。</p>
-<p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
-<h2 id="开发漏洞情报"><a href="#开发漏洞情报" class="headerlink" title="开发漏洞情报"></a>开发漏洞情报</h2><h3 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h3><ul>
-<li>CVE <a target="_blank" rel="noopener" href="https://cve.mitre.org/">https://cve.mitre.org</a></li>
-<li>Exploit-DB <a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a></li>
-<li>CX Security <a target="_blank" rel="noopener" href="https://cxsecurity.com/">https://cxsecurity.com/</a></li>
-<li>CNVD <a target="_blank" rel="noopener" href="https://www.cnvd.org.cn/">https://www.cnvd.org.cn/</a></li>
-<li>securitytracker （网站现已关闭）</li>
-</ul>
-<h3 id="Search-Exploit-DB"><a href="#Search-Exploit-DB" class="headerlink" title="Search Exploit-DB"></a>Search Exploit-DB</h3><p><img src="https://img1.imgtp.com/2022/03/25/dJp5wuQ4.png"></p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>搜索Windows提权漏洞</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">searchsploit -t windows <span class="token builtin class-name">local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00.前言"></a>0x00.前言</h2><p>wmic和cmd一样在所有的windows版本中都存在，同时wmic有很多cmd下不方便使用的部分，今天给大家介绍一些在后渗透过程中非常适用的使用wmic进行信息收集的命令</p>
+<h2 id="0x01-关于wmic"><a href="#0x01-关于wmic" class="headerlink" title="0x01.关于wmic"></a>0x01.关于wmic</h2><p>WMI命令行（WMIC）实用程序为WMI提供了命令行界面。WMIC与现有的Shell和实用程序命令兼容。在WMIC出现之前，如果要管理WMI系统，必须使用一些专门的WMI应用，例如SMS，或者使用WMI的脚本编程API，或者使用像CIM Studio之类的工具。如果不熟悉C++之类的编程语言或VBSCript之类的脚本语言，或者不掌握WMI名称空间的基本知识，要用WMI管理系统是很困难的。WMIC改变了这种情况</p>
+<h2 id="0x02-wmic的简单使用"><a href="#0x02-wmic的简单使用" class="headerlink" title="0x02.wmic的简单使用"></a>0x02.wmic的简单使用</h2><p>首先在cmd命令行输入wmic进入交互式页面，这里说一下在powershell也可以和cmd命令行一样的操作</p>
+<p><code>wmic /？</code> 查看WMIC命令的全局选项，WMIC全局选项可以用来设置WMIC环境的各种属性</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/28/Pfa0qYVK.png"></p>
+<p><code>wmic process /?</code> 进程管理的帮助</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/28/uCo7Z5x3.png"></p>
+<p><code>wmic process get /?</code> 属性获取操作帮助</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/28/nQO8OTsj.png"></p>
+<h2 id="0x03-以进程为例展现wmic的使用"><a href="#0x03-以进程为例展现wmic的使用" class="headerlink" title="0x03.以进程为例展现wmic的使用"></a>0x03.以进程为例展现wmic的使用</h2><p>这里的靶机使用的是一台win7 x86的虚拟机 这里以查看进程为例：</p>
+<p><code>wmic process get caption,executablepath,processid</code> 获取系统当前正在运行的进程、进程运行的路径、进程id</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/28/rNIxLrly.png"></p>
+<p><code>wmic service where (state=&quot;running&quot;) get name,processid,pathname,startmode,caption</code> 获取系统运行的应用进程，进程名称，进程应用路径、进程id</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/28/dUB7fPTT.png"></p>
+<p><code>wmic /namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe,productState</code> 查询杀毒软件</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/U69zvrpq.png"></p>
+<p><code>wmic onboarddevice get Description,DeviceType,Enabled,Status /format:list</code> 获取主板内置信息</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/JVqNqWon.png"></p>
+<p><code>wmic product get name</code> 系统安装软件情况</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/9O3uj4Xz.png"></p>
+<p><code>wmic environment get Description,VariableValue</code> 系统环境变量</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/m5GnGk0V.png"></p>
+<p><code>wmic computersystem get Name,Domain,Manufacturer,Model,Username,Roles /format:list</code>  获取域名，主板信息，主机名，角色，用户名</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/Bgy0UFlt.png"></p>
+<p><code>wmic sysdriver get caption,Name,PathName,ServiceType,State,Status /format:list</code> 获取所有进程的进程名、运行路径、服务类型、状态</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/ZYVGLPnS.png"></p>
+<p>关于跟多的信息可以通过官方的说明文档</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic">https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic</a></p>
+<h2 id="0x04-关于powershell的Get-Wmi对象"><a href="#0x04-关于powershell的Get-Wmi对象" class="headerlink" title="0x04.关于powershell的Get-Wmi对象"></a>0x04.关于powershell的Get-Wmi对象</h2><p>Get-Wmi是获取Windows Management Instrumentation（WMI）类的实例或有关可用类的信息。</p>
+<p>我们需要首先知道自己的windows计算机支持哪些可用的WMI类</p>
+<p><code>Get-Wmiobject -list</code> 自己的windows计算机支持哪些可用的WMI类</p>
+<p><img src="https://imgtp.apqiang.com/2022/03/29/atPqrfIz.png"></p>
+<p>例子：在本地计算机上获取进程</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">PS C:<span class="token punctuation">\</span>Users<span class="token punctuation">\</span>Administrator<span class="token operator">></span> get-wmiobject
 
-<p><img src="https://img1.imgtp.com/2022/03/25/Sd0TTUUZ.png"></p>
-<p>搜索Apache漏洞</p>
-<p><img src="https://img1.imgtp.com/2022/03/25/Gu6eUnjF.png"></p>
-<h2 id="开源情报信息搜集（OSINT）"><a href="#开源情报信息搜集（OSINT）" class="headerlink" title="开源情报信息搜集（OSINT）"></a>开源情报信息搜集（OSINT）</h2><h3 id="搜索引擎语法"><a href="#搜索引擎语法" class="headerlink" title="搜索引擎语法"></a>搜索引擎语法</h3><ul>
-<li>百度 <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a></li>
-<li>谷歌 <a target="_blank" rel="noopener" href="http://www.google.com/">http://www.google.com</a></li>
-<li>必应 <a target="_blank" rel="noopener" href="http://www.bing.com/">http://www.bing.com</a></li>
-</ul>
-<h3 id="在线接口"><a href="#在线接口" class="headerlink" title="在线接口"></a>在线接口</h3><table>
-<thead>
-<tr>
-<th>url</th>
-<th>简介</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a target="_blank" rel="noopener" href="https://www.webscan.cc/">https://www.webscan.cc/</a></td>
-<td>主要解析域名ip，同时提供该同服ip站点列表，但多数解析为cdn</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://search.censys.io/">https://search.censys.io/</a></td>
-<td>根据ip查询开启的服务信息，查看子域关系图。也可以根据body信息查询含有关键字的主机</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh/</a></td>
-<td>可以查询域的OU信息和证书信息</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a></td>
-<td>加载较慢，可以查询解析的ip和开启的服务以及服务器的地域</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://www.threatcrowd.org/">https://www.threatcrowd.org/</a></td>
-<td>关系图、whois信息、dns历史解析、开启的服务、子域以及对应的IP</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://dnslytics.com/">https://dnslytics.com</a></td>
-<td>根据域名可以查询顶级域不同的域名，可查询路由信息和信息提供者。根据ip查询可以较全的whois信息和开启的服务</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://pentest-tools.com/information-gathering/find-subdomains-of-domain">https://pentest-tools.com/information-gathering/find-subdomains-of-domain</a></td>
-<td>可以扫描子域名，但是每天只有一次免费的机会，该网站的在线工具都是付费使用</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://viewdns.info/">https://viewdns.info</a></td>
-<td>有挺多功能，反查ip、whois查询、ip历史、端口扫描等，但是加载慢</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="http://www.yunsee.cn/finger.html">http://www.yunsee.cn/finger.html</a></td>
-<td>需要注册、邀请码</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://www.aizhan.com/">https://www.aizhan.com/</a></td>
-<td>可以查询访问量、子域等</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://phpinfo.me/domain">https://phpinfo.me/domain</a></td>
-<td>爆破子域名</td>
-</tr>
-</tbody></table>
-<h3 id="相关整合工具"><a href="#相关整合工具" class="headerlink" title="相关整合工具"></a>相关整合工具</h3><p><a target="_blank" rel="noopener" href="https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md">https://github.com/rshipp/awesome-malware-analysis/blob/main/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%A4%A7%E5%90%88%E9%9B%86.md</a></p>
-<p>在线恶意软件分析整合</p>
-<h3 id="DNS历史解析记录"><a href="#DNS历史解析记录" class="headerlink" title="DNS历史解析记录"></a>DNS历史解析记录</h3><p><a target="_blank" rel="noopener" href="https://www.dnsdb.io/zh-cn/">https://www.dnsdb.io/zh-cn/</a></p>
-<p><a target="_blank" rel="noopener" href="https://viewdns.info/">https://viewdns.info/</a></p>
-<h3 id="信息收集在线工具合集"><a href="#信息收集在线工具合集" class="headerlink" title="信息收集在线工具合集"></a>信息收集在线工具合集</h3><p><a target="_blank" rel="noopener" href="https://lovebear.top/info/cn/index.html">https://lovebear.top/info/cn/index.html</a></p>
+位于命令管道位置 <span class="token number">1</span> 的 cmdlet Get-WmiObject
+请为以下参数提供值:
+Class: win32_process
+<span class="token comment">#在本地计算机上获取进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imgtp.apqiang.com/2022/03/29/vknWQNNL.png"></p>
+<p>Get-WmiObject和wmic相比，可以说是一个升级版，Get-WmiObject可以指定一个参数进行使用（Parameters）例如在本地计算机上获取进程，也可以指定相应的参数进行一个查询他的一个过程</p>
+<p><code>Get-WmiObject -Class Win32_Process</code> 在本地计算机上获取进程</p>
+<p>具体的参数以及命令在官方文档中进行查询</p>
+<p><a target="_blank" rel="noopener" href="http://docs.microsoft.com/zh-cn/powershell/module/Microsoft.PowerShell.Management/Get-WmiObject?view=powershell-5.1#parameters">http://docs.microsoft.com/zh-cn/powershell/module/Microsoft.PowerShell.Management/Get-WmiObject?view=powershell-5.1#parameters</a></p>
 
                 
             </div>
@@ -558,7 +522,7 @@ var _hmt = _hmt || [];
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://f1veseven.github.io/2022/03/25/kai-yuan-lou-dong-qing-bao/">http://f1veseven.github.io/2022/03/25/kai-yuan-lou-dong-qing-bao/</a>
+                    <a href="http://f1veseven.github.io/2022/03/28/nei-wang-xin-xi-sou-ji-zhi-wmic-ming-ling-de-yi-xie-shi-yong-fang-fa/">http://f1veseven.github.io/2022/03/28/nei-wang-xin-xi-sou-ji-zhi-wmic-ming-ling-de-yi-xie-shi-yong-fang-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -604,8 +568,8 @@ var _hmt = _hmt || [];
                                     <span class="chip bg-color">信息收集</span>
                                 </a>
                             
-                                <a href="/tags/tools/">
-                                    <span class="chip bg-color">tools</span>
+                                <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
+                                    <span class="chip bg-color">内网渗透</span>
                                 </a>
                             
                         </div>
@@ -933,16 +897,17 @@ var _hmt = _hmt || [];
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/26/github-hacking/">
+                <a href="/2022/03/28/nei-wang-xin-xi-sou-ji-zhi-wmic-ming-ling-de-yi-xie-shi-yong-fang-fa/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/28/c3d6fTwa.jpeg" class="responsive-img" alt="Github Hacking">
+                        <img src="https://imgtp.apqiang.com/2022/03/29/ifPg7hui.jpeg" class="responsive-img" alt="内网信息搜集之wmic命令的一些使用方法">
                         
-                        <span class="card-title">Github Hacking</span>
+                        <span class="card-title">内网信息搜集之wmic命令的一些使用方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -952,9 +917,9 @@ var _hmt = _hmt || [];
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -967,6 +932,7 @@ var _hmt = _hmt || [];
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -976,6 +942,10 @@ var _hmt = _hmt || [];
                     
                     <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
                         <span class="chip bg-color">信息收集</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
+                        <span class="chip bg-color">内网渗透</span>
                     </a>
                     
                 </div>
@@ -989,12 +959,12 @@ var _hmt = _hmt || [];
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/25/guan-lian-xin-xi-sheng-cheng/">
+                <a href="/2022/03/28/nei-wang-xin-xi-shou-ji/">
                     <div class="card-image">
                         
-                        <img src="https://img1.imgtp.com/2022/03/25/F7bmropg.png" class="responsive-img" alt="关联信息生成">
+                        <img src="https://imgtp.apqiang.com/2022/03/28/HyPDhJfP.jpeg" class="responsive-img" alt="内网信息收集">
                         
-                        <span class="card-title">关联信息生成</span>
+                        <span class="card-title">内网信息收集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1005,7 +975,7 @@ var _hmt = _hmt || [];
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
                             </span>
                         <span class="publish-author">
                             
@@ -1028,6 +998,10 @@ var _hmt = _hmt || [];
                     
                     <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
                         <span class="chip bg-color">信息收集</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
+                        <span class="chip bg-color">内网渗透</span>
                     </a>
                     
                 </div>
