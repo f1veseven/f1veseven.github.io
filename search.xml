@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>JBOSS未授权访问</title>
+      <link href="/2022/04/02/jboss-wei-shou-quan-fang-wen/"/>
+      <url>/2022/04/02/jboss-wei-shou-quan-fang-wen/</url>
+      
+        <content type="html"><![CDATA[<p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p><h2 id="0x01-什么是jboss"><a href="#0x01-什么是jboss" class="headerlink" title="0x01 什么是jboss"></a>0x01 什么是jboss</h2><p>Jboss是一个基于J2EE的开放源代码的应用服务器。JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB 1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。</p><h2 id="0x02-什么是jboss未授权访问"><a href="#0x02-什么是jboss未授权访问" class="headerlink" title="0x02 什么是jboss未授权访问"></a>0x02 什么是jboss未授权访问</h2><p>未授权访问管理控制台,通过该漏洞,可以后台管理服务,可以通过脚本命令执行系统命令,如反弹shell,wget写webshell文件。</p><h2 id="0x03-漏洞复现（使用CVE-2017-7504的漏洞环境）"><a href="#0x03-漏洞复现（使用CVE-2017-7504的漏洞环境）" class="headerlink" title="0x03 漏洞复现（使用CVE-2017-7504的漏洞环境）"></a>0x03 漏洞复现（使用CVE-2017-7504的漏洞环境）</h2><p>使用vulhub漏洞平台，启用环境位置：vulhub–jboss–cve-2017-7504</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>启用成功使用浏览器访问 IP:8080    </p><p><img src="https://imgtp.apqiang.com/2022/04/02/hzoBdxlX.png"></p><p>弱口令进入后台</p><p><img src="https://imgtp.apqiang.com/2022/04/02/nmWwbAd9.png"></p><p>找到入口</p><p><img src="https://imgtp.apqiang.com/2022/04/02/jQemMqLh.png"></p><p>找到 addURL() 接口</p><p><img src="https://imgtp.apqiang.com/2022/04/02/giIQ8LNR.png"></p><p>下载脚本利用 <a href="https://github.com/joaomatosf/jexboss">https://github.com/joaomatosf/jexboss</a></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──(kali㉿kali)-[~&#x2F;tools&#x2F;jexboss]└─$ python3 jexboss.py -husage: JexBoss [-h] [--version] [--auto-exploit] [--disable-check-updates] [-mode &#123;standalone,auto-scan,file-scan&#125;] [--app-unserialize]               [--servlet-unserialize] [--jboss] [--jenkins] [--struts2] [--jmxtomcat] [--proxy PROXY] [--proxy-cred LOGIN:PASS]               [--jboss-login LOGIN:PASS] [--timeout TIMEOUT] [--cookies NAME&#x3D;VALUE] [--reverse-host RHOST:RPORT] [--cmd CMD] [--dns URL] [--windows]               [--post-parameter PARAMETER] [--show-payload] [--gadget &#123;commons-collections3.1,commons-collections4.0,jdk7u21,jdk8u20,groovy1,dns&#125;]               [--load-gadget FILENAME] [--force] [-host HOST] [-network NETWORK] [-ports PORTS] [-results FILENAME] [-file FILENAME_HOSTS]               [-out FILENAME_RESULTS]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>执行脚本指定ip和端口</p><p>python3 jexboss.py -u ip:port</p><p>执行，工具会一次检测一下项目，有漏洞就会显示红色的：VULNERABLE（易受攻击的），工具就会根据找到容易受到攻击的点，进行利用，然后选择yes，开始创建连接</p><p><img src="https://imgtp.apqiang.com/2022/04/02/lJ0hAQCa.png"></p><p>连接后执行命令</p><p><img src="https://imgtp.apqiang.com/2022/04/02/NUB5FnxI.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> redteam </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redteam </tag>
+            
+            <tag> 外部打点 </tag>
+            
+            <tag> 未授权 </tag>
+            
+            <tag> JBOSS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>未授权漏洞</title>
       <link href="/2022/03/31/wei-shou-quan-fang-wen-lou-dong/"/>
       <url>/2022/03/31/wei-shou-quan-fang-wen-lou-dong/</url>

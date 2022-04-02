@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="内网信息收集, F1veseven Blog">
-    <meta name="description" content="本章节内容主要是介绍在内网中该如何搜集信息以及该搜集哪些信息。
-文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。
-0x01 Windows（工作组和域）0x01-1 检查当前shell权限who">
+    <meta name="keywords" content="JBOSS未授权访问, F1veseven Blog">
+    <meta name="description" content="文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。
+0x01 什么是jbossJboss是一个基于J2EE的开放源代码的应用服务器。JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。J">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>内网信息收集 | F1veseven Blog</title>
+    <title>JBOSS未授权访问 | F1veseven Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -259,12 +258,12 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/03/28/HyPDhJfP.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/04/02/EFzM4xVa.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">内网信息收集</h1>
+                    <h1 class="description center-align post-title">JBOSS未授权访问</h1>
                 </div>
             </div>
         </div>
@@ -384,12 +383,16 @@ var _hmt = _hmt || [];
                                 <span class="chip bg-color">redteam</span>
                             </a>
                         
-                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                <span class="chip bg-color">信息收集</span>
+                            <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                                <span class="chip bg-color">外部打点</span>
                             </a>
                         
-                            <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                                <span class="chip bg-color">内网渗透</span>
+                            <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                                <span class="chip bg-color">未授权</span>
+                            </a>
+                        
+                            <a href="/tags/JBOSS/">
+                                <span class="chip bg-color">JBOSS</span>
                             </a>
                         
                     </div>
@@ -413,7 +416,7 @@ var _hmt = _hmt || [];
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-28
+                    2022-04-02
                 </div>
                 
 
@@ -422,14 +425,14 @@ var _hmt = _hmt || [];
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    732
+                    438
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -452,76 +455,37 @@ var _hmt = _hmt || [];
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本章节内容主要是介绍在内网中该如何搜集信息以及该搜集哪些信息。</p>
-<p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
-<h2 id="0x01-Windows（工作组和域）"><a href="#0x01-Windows（工作组和域）" class="headerlink" title="0x01 Windows（工作组和域）"></a>0x01 Windows（工作组和域）</h2><h3 id="0x01-1-检查当前shell权限"><a href="#0x01-1-检查当前shell权限" class="headerlink" title="0x01-1 检查当前shell权限"></a>0x01-1 检查当前shell权限</h3><p><code>whoami /user &amp;&amp; whoami /priv</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/4G3iqZCD.png"></p>
-<h3 id="0x01-2-查看系统信息"><a href="#0x01-2-查看系统信息" class="headerlink" title="0x01-2 查看系统信息"></a>0x01-2 查看系统信息</h3><p><code>systeminfo</code></p>
-<p>主机名-&gt;扮演的角色</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/g9zanT0N.png"></p>
-<h3 id="0x01-3-tcp-udp-网络连接状态信息"><a href="#0x01-3-tcp-udp-网络连接状态信息" class="headerlink" title="0x01-3 tcp/udp 网络连接状态信息"></a>0x01-3 tcp/udp 网络连接状态信息</h3><p><code>netstat -ano</code></p>
-<p>可以获取内网IP分布状态-服务（redis）</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/cAb597HL.png"></p>
-<h3 id="0x01-4-机器名"><a href="#0x01-4-机器名" class="headerlink" title="0x01-4 机器名"></a>0x01-4 机器名</h3><p><code>hostname</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/NvjsJrOS.png"></p>
-<h3 id="0x01-5-查看当前操作系统"><a href="#0x01-5-查看当前操作系统" class="headerlink" title="0x01-5 查看当前操作系统"></a>0x01-5 查看当前操作系统</h3><p><code>wmic OS get Caption,CSDVersion,OSArchitecture,Version</code></p>
-<p><code>ver</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/ARv8kjn7.png"></p>
-<h3 id="0x01-6-查杀软"><a href="#0x01-6-查杀软" class="headerlink" title="0x01-6 查杀软"></a>0x01-6 查杀软</h3><p><code>WMIC /Node:localhost /Namespace:\\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:list</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/5tkLRNnG.png"></p>
-<h3 id="0x01-7-查看当前安装的程序"><a href="#0x01-7-查看当前安装的程序" class="headerlink" title="0x01-7 查看当前安装的程序"></a>0x01-7 查看当前安装的程序</h3><p><code>wmic product get name,verion</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/QmVn4TwI.png"></p>
-<h3 id="0x01-8-查看在线用户"><a href="#0x01-8-查看在线用户" class="headerlink" title="0x01-8 查看在线用户"></a>0x01-8 查看在线用户</h3><p><code>quesr</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/JVCXP6MS.png"></p>
-<h3 id="0x01-9-查看网络配置"><a href="#0x01-9-查看网络配置" class="headerlink" title="0x01-9 查看网络配置"></a>0x01-9 查看网络配置</h3><p>有Primary Dns Suffix就说明是域内，空的则当前机器应该在工作组</p>
-<p><code>ipconfig /all</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/7z3QNQAe.png"></p>
-<h3 id="0x01-10-查看进程"><a href="#0x01-10-查看进程" class="headerlink" title="0x01-10 查看进程"></a>0x01-10 查看进程</h3><p><code>tasklist /v</code></p>
-<p>有些进程可能是域用户开启的-&gt;通过管理员权限 凭证窃取-&gt;窃取域用户的凭证</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/1e0FrROM.png"></p>
-<h3 id="0x01-11查看当前登录域"><a href="#0x01-11查看当前登录域" class="headerlink" title="0x01-11查看当前登录域"></a>0x01-11查看当前登录域</h3><p><code>net config workstation</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/OquVB2qn.png"></p>
-<h3 id="0x01-12-远程桌面连接历史记录"><a href="#0x01-12-远程桌面连接历史记录" class="headerlink" title="0x01-12 远程桌面连接历史记录"></a>0x01-12 远程桌面连接历史记录</h3><p><code>cmdkey /l</code></p>
-<p>把凭证取下来-&gt;本地解密</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/3hf2Ldzj.png"></p>
-<h3 id="0x01-13-查看本机上的用户账号列表"><a href="#0x01-13-查看本机上的用户账号列表" class="headerlink" title="0x01-13 查看本机上的用户账号列表"></a>0x01-13 查看本机上的用户账号列表</h3><p><code>net user</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/zlCdWYiF.png"></p>
-<h3 id="0x01-14-查看本机用户XXX的信息"><a href="#0x01-14-查看本机用户XXX的信息" class="headerlink" title="0x01-14 查看本机用户XXX的信息"></a>0x01-14 查看本机用户XXX的信息</h3><p><code>net user XXX</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/TmUVLOXU.png"></p>
-<p><code>net user /domain</code>                显示所在域的用户名单</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/JLDMZ2vh.png"></p>
-<p><code>net user 域用户 /domain</code>     获取某个域用户的详细信息</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/GHUVuVBq.png"></p>
-<p><code>net user /domain XXX 123456</code> 修改域用户密码，需要域管理员权限</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/Ac8RtURS.png"></p>
-<p><code>net user /do</code>  获取域用户列表</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/m44YMg8S.png"></p>
-<p><code>net group &quot;domain admins&quot; /domain</code>  获取域管理员列表</p>
-<p><code>net group &quot;domain controllers&quot; /domain</code> 查看域控制器（如果有多台）</p>
-<p><code>net group &quot;domain computers&quot; /domain</code> 查看域机器</p>
-<p><code>net group /domain</code> 查询域里面的工作组</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/jy2JeBDy.png"></p>
-<p><code>net localgroup administrators</code>  本机管理员[通常含有域用户]</p>
-<p><code>net localgroup administrators /domain</code> 登录本机的域管理员</p>
-<p><code>net localgroup administrators workgroup\user001 /add</code> 域用户添加到本机</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/zG8nxbA6.png"></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/DcdhGkQM.png"></p>
-<p><code>net view</code> 查看同一域内机器列表</p>
-<p><code>net view \\ip</code> 查看某IP共享</p>
-<p><code>net view \\GHQ</code> 查看GHQ计算机的共享资源列表</p>
-<p><code>net view /domain</code> 查看内网存在多少个域</p>
-<p><code>net view /domain:XYZ</code> 查看XYZ域中的机器列表</p>
-<p><code>net accounts /domain</code> 查询域用户密码过期等信息</p>
-<h2 id="0x02-Windows（域）"><a href="#0x02-Windows（域）" class="headerlink" title="0x02 Windows（域）"></a>0x02 Windows（域）</h2><p><code>nltest /domain_trusts /all_trusts /v /server:192.168.1.2</code> 返回所有域信任列表</p>
-<p><code>nltest /dsgetdc:hack /server:192.168.1.2</code> 返回域控和其相应的IP地址</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/1Hm3VtpJ.png"></p>
-<h2 id="0x03-Linux"><a href="#0x03-Linux" class="headerlink" title="0x03 Linux"></a>0x03 Linux</h2><h3 id="0x03-1-查看当前权限"><a href="#0x03-1-查看当前权限" class="headerlink" title="0x03-1 查看当前权限"></a>0x03-1 查看当前权限</h3><p><code>whoami</code></p>
-<h3 id="0x03-2-查看网卡配置"><a href="#0x03-2-查看网卡配置" class="headerlink" title="0x03-2 查看网卡配置"></a>0x03-2 查看网卡配置</h3><p><code>ifconfig</code></p>
-<h3 id="0x03-3-查看端口状态（开启了哪些服务，内网IP连接等）"><a href="#0x03-3-查看端口状态（开启了哪些服务，内网IP连接等）" class="headerlink" title="0x03-3 查看端口状态（开启了哪些服务，内网IP连接等）"></a>0x03-3 查看端口状态（开启了哪些服务，内网IP连接等）</h3><p><code>netstat -anpt</code></p>
-<h3 id="0x03-4-查看进程状态（开启了哪些服务等）"><a href="#0x03-4-查看进程状态（开启了哪些服务等）" class="headerlink" title="0x03-4 查看进程状态（开启了哪些服务等）"></a>0x03-4 查看进程状态（开启了哪些服务等）</h3><p><code>ps -ef</code></p>
-<h3 id="0x03-5-查看管理员的历史输入命令（获取密码，网站目录，内网资产等信息）"><a href="#0x03-5-查看管理员的历史输入命令（获取密码，网站目录，内网资产等信息）" class="headerlink" title="0x03-5 查看管理员的历史输入命令（获取密码，网站目录，内网资产等信息）"></a>0x03-5 查看管理员的历史输入命令（获取密码，网站目录，内网资产等信息）</h3><p><code>history</code></p>
-<p><code>cat /root/.bash_history</code></p>
-<h3 id="0x03-6-查找某个文件（寻找配置文件等）"><a href="#0x03-6-查找某个文件（寻找配置文件等）" class="headerlink" title="0x03-6 查找某个文件（寻找配置文件等）"></a>0x03-6 查找某个文件（寻找配置文件等）</h3><p><code>find / -name *.cfg</code></p>
+                <p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
+<h2 id="0x01-什么是jboss"><a href="#0x01-什么是jboss" class="headerlink" title="0x01 什么是jboss"></a>0x01 什么是jboss</h2><p>Jboss是一个基于J2EE的开放源代码的应用服务器。JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB 1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。</p>
+<h2 id="0x02-什么是jboss未授权访问"><a href="#0x02-什么是jboss未授权访问" class="headerlink" title="0x02 什么是jboss未授权访问"></a>0x02 什么是jboss未授权访问</h2><p>未授权访问管理控制台,通过该漏洞,可以后台管理服务,可以通过脚本命令执行系统命令,如反弹shell,wget写webshell文件。</p>
+<h2 id="0x03-漏洞复现（使用CVE-2017-7504的漏洞环境）"><a href="#0x03-漏洞复现（使用CVE-2017-7504的漏洞环境）" class="headerlink" title="0x03 漏洞复现（使用CVE-2017-7504的漏洞环境）"></a>0x03 漏洞复现（使用CVE-2017-7504的漏洞环境）</h2><p>使用vulhub漏洞平台，启用环境位置：vulhub–jboss–cve-2017-7504</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker-compose up -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>启用成功使用浏览器访问 IP:8080    </p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/hzoBdxlX.png"></p>
+<p>弱口令进入后台</p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/nmWwbAd9.png"></p>
+<p>找到入口</p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/jQemMqLh.png"></p>
+<p>找到 addURL() 接口</p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/giIQ8LNR.png"></p>
+<p>下载脚本利用 <a target="_blank" rel="noopener" href="https://github.com/joaomatosf/jexboss">https://github.com/joaomatosf/jexboss</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">┌──(kali㉿kali)-[~&#x2F;tools&#x2F;jexboss]
+└─$ python3 jexboss.py -h
+
+usage: JexBoss [-h] [--version] [--auto-exploit] [--disable-check-updates] [-mode &#123;standalone,auto-scan,file-scan&#125;] [--app-unserialize]
+               [--servlet-unserialize] [--jboss] [--jenkins] [--struts2] [--jmxtomcat] [--proxy PROXY] [--proxy-cred LOGIN:PASS]
+               [--jboss-login LOGIN:PASS] [--timeout TIMEOUT] [--cookies NAME&#x3D;VALUE] [--reverse-host RHOST:RPORT] [--cmd CMD] [--dns URL] [--windows]
+               [--post-parameter PARAMETER] [--show-payload] [--gadget &#123;commons-collections3.1,commons-collections4.0,jdk7u21,jdk8u20,groovy1,dns&#125;]
+               [--load-gadget FILENAME] [--force] [-host HOST] [-network NETWORK] [-ports PORTS] [-results FILENAME] [-file FILENAME_HOSTS]
+               [-out FILENAME_RESULTS]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行脚本指定ip和端口</p>
+<p>python3 jexboss.py -u ip:port</p>
+<p>执行，工具会一次检测一下项目，有漏洞就会显示红色的：VULNERABLE（易受攻击的），工具就会根据找到容易受到攻击的点，进行利用，然后选择yes，开始创建连接</p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/lJ0hAQCa.png"></p>
+<p>连接后执行命令</p>
+<p><img src="https://imgtp.apqiang.com/2022/04/02/NUB5FnxI.png"></p>
 
                 
             </div>
@@ -548,7 +512,7 @@ var _hmt = _hmt || [];
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://f1veseven.github.io/2022/03/28/nei-wang-xin-xi-shou-ji/">http://f1veseven.github.io/2022/03/28/nei-wang-xin-xi-shou-ji/</a>
+                    <a href="http://f1veseven.github.io/2022/04/02/jboss-wei-shou-quan-fang-wen/">http://f1veseven.github.io/2022/04/02/jboss-wei-shou-quan-fang-wen/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -590,12 +554,16 @@ var _hmt = _hmt || [];
                                     <span class="chip bg-color">redteam</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                                    <span class="chip bg-color">信息收集</span>
+                                <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                                    <span class="chip bg-color">外部打点</span>
                                 </a>
                             
-                                <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                                    <span class="chip bg-color">内网渗透</span>
+                                <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                                    <span class="chip bg-color">未授权</span>
+                                </a>
+                            
+                                <a href="/tags/JBOSS/">
+                                    <span class="chip bg-color">JBOSS</span>
                                 </a>
                             
                         </div>
@@ -923,16 +891,17 @@ var _hmt = _hmt || [];
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/28/nei-wang-xin-xi-sou-ji-zhi-wmic-ming-ling-de-yi-xie-shi-yong-fang-fa/">
+                <a href="/2022/04/02/jboss-wei-shou-quan-fang-wen/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/29/ifPg7hui.jpeg" class="responsive-img" alt="内网信息搜集之wmic命令的一些使用方法">
+                        <img src="https://imgtp.apqiang.com/2022/04/02/EFzM4xVa.png" class="responsive-img" alt="JBOSS未授权访问">
                         
-                        <span class="card-title">内网信息搜集之wmic命令的一些使用方法</span>
+                        <span class="card-title">JBOSS未授权访问</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -942,9 +911,9 @@ var _hmt = _hmt || [];
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -957,6 +926,7 @@ var _hmt = _hmt || [];
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -964,12 +934,16 @@ var _hmt = _hmt || [];
                         <span class="chip bg-color">redteam</span>
                     </a>
                     
-                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                        <span class="chip bg-color">信息收集</span>
+                    <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                        <span class="chip bg-color">外部打点</span>
                     </a>
                     
-                    <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">
-                        <span class="chip bg-color">内网渗透</span>
+                    <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                        <span class="chip bg-color">未授权</span>
+                    </a>
+                    
+                    <a href="/tags/JBOSS/">
+                        <span class="chip bg-color">JBOSS</span>
                     </a>
                     
                 </div>
@@ -983,12 +957,12 @@ var _hmt = _hmt || [];
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/28/mailsniper-ps1-huo-qu-outlook-suo-you-lian-xi-ren/">
+                <a href="/2022/03/31/wei-shou-quan-fang-wen-lou-dong/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/28/gAujc8xS.jpeg" class="responsive-img" alt="Mailsniper.ps1获取Outlook所有联系人">
+                        <img src="https://imgtp.apqiang.com/2022/04/01/cGCMlWr6.jpg" class="responsive-img" alt="未授权漏洞">
                         
-                        <span class="card-title">Mailsniper.ps1获取Outlook所有联系人</span>
+                        <span class="card-title">未授权漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -999,7 +973,7 @@ var _hmt = _hmt || [];
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-31
                             </span>
                         <span class="publish-author">
                             
@@ -1020,12 +994,12 @@ var _hmt = _hmt || [];
                         <span class="chip bg-color">redteam</span>
                     </a>
                     
-                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                        <span class="chip bg-color">信息收集</span>
+                    <a href="/tags/%E5%A4%96%E9%83%A8%E6%89%93%E7%82%B9/">
+                        <span class="chip bg-color">外部打点</span>
                     </a>
                     
-                    <a href="/tags/tools/">
-                        <span class="chip bg-color">tools</span>
+                    <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/">
+                        <span class="chip bg-color">未授权</span>
                     </a>
                     
                 </div>
