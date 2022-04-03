@@ -1985,7 +1985,7 @@ p.search-result-summary{
 }
 
 .img-shadow {
-    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .2), 0 10px 30px -11px rgba(0, 0, 0, .6)
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .0), 0 10px 30px -11px rgba(0, 0, 0, .0)
 }
 
 .img-margin {
