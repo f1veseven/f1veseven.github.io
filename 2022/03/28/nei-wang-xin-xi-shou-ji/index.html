@@ -259,7 +259,7 @@ var _hmt = _hmt || [];
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://imgtp.apqiang.com/2022/03/28/HyPDhJfP.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173923.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -455,57 +455,51 @@ var _hmt = _hmt || [];
                 <p>本章节内容主要是介绍在内网中该如何搜集信息以及该搜集哪些信息。</p>
 <p>文章内容主要摘自某红队系列丛书，将市面上现在流传的 redteam 系列书籍进行一个学习记录。</p>
 <h2 id="0x01-Windows（工作组和域）"><a href="#0x01-Windows（工作组和域）" class="headerlink" title="0x01 Windows（工作组和域）"></a>0x01 Windows（工作组和域）</h2><h3 id="0x01-1-检查当前shell权限"><a href="#0x01-1-检查当前shell权限" class="headerlink" title="0x01-1 检查当前shell权限"></a>0x01-1 检查当前shell权限</h3><p><code>whoami /user &amp;&amp; whoami /priv</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/4G3iqZCD.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512172214.png"></p>
 <h3 id="0x01-2-查看系统信息"><a href="#0x01-2-查看系统信息" class="headerlink" title="0x01-2 查看系统信息"></a>0x01-2 查看系统信息</h3><p><code>systeminfo</code></p>
 <p>主机名-&gt;扮演的角色</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/g9zanT0N.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/image-20220512172259810.png"></p>
 <h3 id="0x01-3-tcp-udp-网络连接状态信息"><a href="#0x01-3-tcp-udp-网络连接状态信息" class="headerlink" title="0x01-3 tcp/udp 网络连接状态信息"></a>0x01-3 tcp/udp 网络连接状态信息</h3><p><code>netstat -ano</code></p>
 <p>可以获取内网IP分布状态-服务（redis）</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/cAb597HL.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512172328.png"></p>
 <h3 id="0x01-4-机器名"><a href="#0x01-4-机器名" class="headerlink" title="0x01-4 机器名"></a>0x01-4 机器名</h3><p><code>hostname</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/NvjsJrOS.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512172358.png"></p>
 <h3 id="0x01-5-查看当前操作系统"><a href="#0x01-5-查看当前操作系统" class="headerlink" title="0x01-5 查看当前操作系统"></a>0x01-5 查看当前操作系统</h3><p><code>wmic OS get Caption,CSDVersion,OSArchitecture,Version</code></p>
 <p><code>ver</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/ARv8kjn7.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/image-20220512172529662.png"></p>
 <h3 id="0x01-6-查杀软"><a href="#0x01-6-查杀软" class="headerlink" title="0x01-6 查杀软"></a>0x01-6 查杀软</h3><p><code>WMIC /Node:localhost /Namespace:\\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:list</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/5tkLRNnG.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512172708.png"></p>
 <h3 id="0x01-7-查看当前安装的程序"><a href="#0x01-7-查看当前安装的程序" class="headerlink" title="0x01-7 查看当前安装的程序"></a>0x01-7 查看当前安装的程序</h3><p><code>wmic product get name,verion</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/QmVn4TwI.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512172802.png"></p>
 <h3 id="0x01-8-查看在线用户"><a href="#0x01-8-查看在线用户" class="headerlink" title="0x01-8 查看在线用户"></a>0x01-8 查看在线用户</h3><p><code>quesr</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/JVCXP6MS.png"></p>
 <h3 id="0x01-9-查看网络配置"><a href="#0x01-9-查看网络配置" class="headerlink" title="0x01-9 查看网络配置"></a>0x01-9 查看网络配置</h3><p>有Primary Dns Suffix就说明是域内，空的则当前机器应该在工作组</p>
 <p><code>ipconfig /all</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/7z3QNQAe.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173104.png"></p>
 <h3 id="0x01-10-查看进程"><a href="#0x01-10-查看进程" class="headerlink" title="0x01-10 查看进程"></a>0x01-10 查看进程</h3><p><code>tasklist /v</code></p>
 <p>有些进程可能是域用户开启的-&gt;通过管理员权限 凭证窃取-&gt;窃取域用户的凭证</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/1e0FrROM.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173148.png"></p>
 <h3 id="0x01-11查看当前登录域"><a href="#0x01-11查看当前登录域" class="headerlink" title="0x01-11查看当前登录域"></a>0x01-11查看当前登录域</h3><p><code>net config workstation</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/OquVB2qn.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/image-20220512173226138.png"></p>
 <h3 id="0x01-12-远程桌面连接历史记录"><a href="#0x01-12-远程桌面连接历史记录" class="headerlink" title="0x01-12 远程桌面连接历史记录"></a>0x01-12 远程桌面连接历史记录</h3><p><code>cmdkey /l</code></p>
 <p>把凭证取下来-&gt;本地解密</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/3hf2Ldzj.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173259.png"></p>
 <h3 id="0x01-13-查看本机上的用户账号列表"><a href="#0x01-13-查看本机上的用户账号列表" class="headerlink" title="0x01-13 查看本机上的用户账号列表"></a>0x01-13 查看本机上的用户账号列表</h3><p><code>net user</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/zlCdWYiF.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173333.png"></p>
 <h3 id="0x01-14-查看本机用户XXX的信息"><a href="#0x01-14-查看本机用户XXX的信息" class="headerlink" title="0x01-14 查看本机用户XXX的信息"></a>0x01-14 查看本机用户XXX的信息</h3><p><code>net user XXX</code></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/TmUVLOXU.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/image-20220512173409173.png"></p>
 <p><code>net user /domain</code>                显示所在域的用户名单</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/JLDMZ2vh.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/image-20220512173516165.png"></p>
 <p><code>net user 域用户 /domain</code>     获取某个域用户的详细信息</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/GHUVuVBq.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173551.png"></p>
 <p><code>net user /domain XXX 123456</code> 修改域用户密码，需要域管理员权限</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/Ac8RtURS.png"></p>
 <p><code>net user /do</code>  获取域用户列表</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/m44YMg8S.png"></p>
 <p><code>net group &quot;domain admins&quot; /domain</code>  获取域管理员列表</p>
 <p><code>net group &quot;domain controllers&quot; /domain</code> 查看域控制器（如果有多台）</p>
 <p><code>net group &quot;domain computers&quot; /domain</code> 查看域机器</p>
 <p><code>net group /domain</code> 查询域里面的工作组</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/jy2JeBDy.png"></p>
 <p><code>net localgroup administrators</code>  本机管理员[通常含有域用户]</p>
 <p><code>net localgroup administrators /domain</code> 登录本机的域管理员</p>
 <p><code>net localgroup administrators workgroup\user001 /add</code> 域用户添加到本机</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/zG8nxbA6.png"></p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/DcdhGkQM.png"></p>
 <p><code>net view</code> 查看同一域内机器列表</p>
 <p><code>net view \\ip</code> 查看某IP共享</p>
 <p><code>net view \\GHQ</code> 查看GHQ计算机的共享资源列表</p>
@@ -514,7 +508,7 @@ var _hmt = _hmt || [];
 <p><code>net accounts /domain</code> 查询域用户密码过期等信息</p>
 <h2 id="0x02-Windows（域）"><a href="#0x02-Windows（域）" class="headerlink" title="0x02 Windows（域）"></a>0x02 Windows（域）</h2><p><code>nltest /domain_trusts /all_trusts /v /server:192.168.1.2</code> 返回所有域信任列表</p>
 <p><code>nltest /dsgetdc:hack /server:192.168.1.2</code> 返回域控和其相应的IP地址</p>
-<p><img src="https://imgtp.apqiang.com/2022/03/28/1Hm3VtpJ.png"></p>
+<p><img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512173817.png"></p>
 <h2 id="0x03-Linux"><a href="#0x03-Linux" class="headerlink" title="0x03 Linux"></a>0x03 Linux</h2><h3 id="0x03-1-查看当前权限"><a href="#0x03-1-查看当前权限" class="headerlink" title="0x03-1 查看当前权限"></a>0x03-1 查看当前权限</h3><p><code>whoami</code></p>
 <h3 id="0x03-2-查看网卡配置"><a href="#0x03-2-查看网卡配置" class="headerlink" title="0x03-2 查看网卡配置"></a>0x03-2 查看网卡配置</h3><p><code>ifconfig</code></p>
 <h3 id="0x03-3-查看端口状态（开启了哪些服务，内网IP连接等）"><a href="#0x03-3-查看端口状态（开启了哪些服务，内网IP连接等）" class="headerlink" title="0x03-3 查看端口状态（开启了哪些服务，内网IP连接等）"></a>0x03-3 查看端口状态（开启了哪些服务，内网IP连接等）</h3><p><code>netstat -anpt</code></p>
@@ -930,7 +924,7 @@ var _hmt = _hmt || [];
                 <a href="/2022/03/28/nei-wang-xin-xi-sou-ji-zhi-wmic-ming-ling-de-yi-xie-shi-yong-fang-fa/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/29/ifPg7hui.jpeg" class="responsive-img" alt="内网信息搜集之wmic命令的一些使用方法">
+                        <img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220520111311.png" class="responsive-img" alt="内网信息搜集之wmic命令的一些使用方法">
                         
                         <span class="card-title">内网信息搜集之wmic命令的一些使用方法</span>
                     </div>
@@ -986,7 +980,7 @@ var _hmt = _hmt || [];
                 <a href="/2022/03/28/mailsniper-ps1-huo-qu-outlook-suo-you-lian-xi-ren/">
                     <div class="card-image">
                         
-                        <img src="https://imgtp.apqiang.com/2022/03/28/gAujc8xS.jpeg" class="responsive-img" alt="Mailsniper.ps1获取Outlook所有联系人">
+                        <img src="https://f1ve-picgogogo.oss-cn-hangzhou.aliyuncs.com/img/20220512171949.png" class="responsive-img" alt="Mailsniper.ps1获取Outlook所有联系人">
                         
                         <span class="card-title">Mailsniper.ps1获取Outlook所有联系人</span>
                     </div>
